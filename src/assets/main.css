@@ -1,9 +1,9 @@
 @import "tailwindcss";
-
+@import "primeicons/primeicons.css";
 
 @layer base {
   body {
-    @apply bg-gray-800;
+    @apply bg-black;
     font-family: "Roboto", sans-serif;
   }
 }

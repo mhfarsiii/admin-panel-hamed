@@ -8,6 +8,10 @@ const router = createRouter({
       path: '/',
       name: 'dashboard',
       component: () => import('../views/HomeView.vue'),
+      meta:{
+        title: 'Dashboard',
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
@@ -15,6 +19,8 @@ const router = createRouter({
       component: () => import('../views/LoginUser.vue'),
     },
   ],
+
+
 
   scrollBehavior(to, from, savedPosition) {
     if(to.hash) {
@@ -28,6 +34,15 @@ const router = createRouter({
       return { top: 0 }
     }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if(to.meta.requiresAuth && !token) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

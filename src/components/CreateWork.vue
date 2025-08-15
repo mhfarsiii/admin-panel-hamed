@@ -25,16 +25,16 @@
     </select>
   </div>
   <div class="w-full flex flex-col gap-3 items-start border-t border-white/20 pt-5">
-    <label for="workImage" class="text-white bg-gray-800 p-2 rounded-md ">
+    <label for="workImage" class="text-white bg-gray-800 p-2 rounded-md cursor-pointer ">
       - Work Image -
     </label>
-    <input type="file"  id="workImage" class="w-full p-2 rounded-md bg-gray-800 text-white" />
+    <input type="file"  id="workImage" class=" p-2 rounded-md bg-gray-800 text-white cursor-pointer border border-white/20" />
   </div>
   <div class="w-full flex flex-col gap-3 items-start border-t border-white/20 pt-5">
-    <label for="ExtraImages" class="text-white bg-gray-800 p-2 rounded-md ">
+    <label for="ExtraImages" class="text-white bg-gray-800 p-2 rounded-md cursor-pointer ">
       - Extra Images -
     </label>
-    <input type="file" multiple id="ExtraImages" class="w-full p-2 rounded-md bg-gray-800 text-white" />
+    <input type="file" multiple id="ExtraImages" class=" p-2 rounded-md bg-gray-800 text-white cursor-pointer border border-white/20" />
   </div>
 
   <div class="w-full flex flex-col gap-3 items-start border-t border-white/20 pt-5">
@@ -44,7 +44,7 @@
     <input type="text" id="Link" placeholder="https://example.com" class="w-full p-2 rounded-md bg-gray-800 text-white border border-white/20 focus:outline-none focus:ring-1 focus:ring-blue-500" />
   </div>
 
-  
+
   <button type="submit" class="w-full p-2 rounded-md bg-blue-500 text-white">Create Work</button>
 </form>
   </div>
