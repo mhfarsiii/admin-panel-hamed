@@ -1,25 +1,30 @@
-# Use Node.js 18 (matching server version)
+# Simple Vue.js Frontend Panel Dockerfile
 FROM node:18-alpine
 
-# Set the working directory
 WORKDIR /app
+
+# Install serve globally
+RUN npm install -g serve
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies with legacy peer deps for compatibility
+# Install dependencies
 RUN npm ci --legacy-peer-deps
 
 # Copy source code
 COPY . .
 
+
+
 # Build the application
 RUN npm run build
 
-# Install a simple static file server
-RUN npm install -g serve
+# Set permissions
+RUN chown -R node:node /app
 
-# Expose port 3000
+USER node
+
 EXPOSE 3000
 
 # Start the application
