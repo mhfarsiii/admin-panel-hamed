@@ -4,15 +4,15 @@
     <Toast />
     <!-- confirm logout -->
     <Dialog v-model:visible="visible" modal header="Edit Profile"
-        :style="{ width: '25rem', backgroundColor: '#111827' }" :show-header="false">
-        <span class="text-surface-500 dark:text-surface-400 block my-8"> Are You Sure About Logout?</span>
-        <div class="flex justify-end gap-2">
-          <Button type="button" variant="outlines" severity="secondary" @click="visible = false">Cancel</Button>
-          <Button type="button" variant="outline" severity="info" @click="logout()">
-            logout
-          </Button>
-        </div>
-      </Dialog>
+      :style="{ width: '25rem', backgroundColor: '#111827' }" :show-header="false">
+      <span class="text-surface-500 dark:text-surface-400 block my-8"> Are You Sure About Logout?</span>
+      <div class="flex justify-end gap-2">
+        <Button type="button" variant="outlines" severity="secondary" @click="visible = false">Cancel</Button>
+        <Button type="button" variant="outline" severity="info" @click="logout()">
+          logout
+        </Button>
+      </div>
+    </Dialog>
 
     <div class="w-full flex flex-nowrap">
       <!-- tab bar-->
@@ -45,7 +45,8 @@
           </div>
         </div>
         <div class="flex flex-col gap-3">
-          <div class="cursor-pointer text-white hover:text-red-500 flex items-center flex-nowrap gap-2" @click="visible = true">
+          <div class="cursor-pointer text-white hover:text-red-500 flex items-center flex-nowrap gap-2"
+            @click="visible = true">
             <IconLogout size="19" />
             Logout
           </div>
@@ -71,6 +72,7 @@
         <!-- list category -->
         <div v-if="activeTab === 'listCategory'" class="w-full h-full overflow-y-scroll pb-7 ">
           <h1 class="text-2xl font-bold text-white">List Category</h1>
+          <ListCategory />
         </div>
       </div>
     </div>
@@ -88,6 +90,7 @@ import { useRouter } from 'vue-router';
 import { usePanelStore } from '@/stores/panel';
 import type { Category } from '@/stores/panel';
 import { useToast } from 'primevue/usetoast';
+import ListCategory from '@/components/ListCategory.vue';
 import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
@@ -106,7 +109,8 @@ const message = computed(() => {
 
 // methods ------------------------------------------------------------
 const logout = () => {
-  localStorage.removeItem('token');
+  panelStore.logout();
+  visible.value = false;
   router.push('/login');
 }
 

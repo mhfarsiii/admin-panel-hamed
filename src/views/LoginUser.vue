@@ -31,6 +31,7 @@ import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import Toast from 'primevue/toast';
+import { saveAuthToken } from '@/utils/auth';
 
 
 // types ------------------------------------------------------------
@@ -69,7 +70,7 @@ const handleLogin = async () => {
     })
     if ('token' in response.data) {
       const token = response.data.token
-      localStorage.setItem('token', token)
+      saveAuthToken(token)
       router.push('/')
     }
     console.log(response.data)

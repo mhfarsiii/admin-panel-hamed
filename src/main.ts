@@ -10,13 +10,36 @@ import router from './router'
 import ToastPlugin from 'vue-toast-notification'
 import ToastService from 'primevue/toastservice'
 import axios from 'axios'
+import { initializeAuth, removeAuthToken } from './utils/auth'
 
-// axios.defaults.baseURL = 'http://localhost:3000/api'
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+// Extend Window interface
+declare global {
+  interface Window {
+    setAuthToken: (token: string | null) => void
+  }
+}
+
+// Initialize authentication state
+initializeAuth()
+
+// Add axios response interceptor to handle authentication errors
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token is invalid or expired
+      removeAuthToken()
+      // Redirect to login page
+      window.location.href = '/login'
+    }
+    return Promise.reject(error)
+  },
+)
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+app.use(pinia)
 app.use(PrimeVue, {
   theme: {
     preset: Aura,
@@ -26,4 +49,5 @@ app.use(router)
 app.use(PrimeVue)
 app.use(ToastPlugin)
 app.use(ToastService)
+
 app.mount('#app')
