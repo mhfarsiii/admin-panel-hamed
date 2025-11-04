@@ -1,5 +1,5 @@
 <template>
-  <div class="products-list-view">
+  <div class="products-list-view text-black">
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <div>

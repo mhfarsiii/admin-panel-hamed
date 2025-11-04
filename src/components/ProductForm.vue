@@ -119,9 +119,9 @@
       <h2 class="text-lg font-semibold text-gray-900 mb-4">مواد اولیه</h2>
 
       <div class="space-y-2">
-        <div v-for="(material, index) in form.materials" :key="index" class="flex gap-2">
+        <div v-for="(material, index) in form.materials || []" :key="index" class="flex gap-2">
           <input
-            v-model="form.materials[index]"
+            v-model="form.materials![index]"
             type="text"
             class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
@@ -166,7 +166,7 @@
         </button>
       </div>
 
-      <div v-if="form.images.length > 0" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div v-if="form.images?.length && form.images?.length > 0" class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div v-for="(image, index) in form.images" :key="index" class="relative group">
           <img :src="image" alt="Product image" class="w-full h-32 object-cover rounded-lg" />
           <button
@@ -190,7 +190,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">طول</label>
           <input
-            v-model.number="form.dimensions.length"
+            v-model.number="form.dimensions!.length"
             type="number"
             min="0"
             step="0.1"
@@ -200,7 +200,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">عرض</label>
           <input
-            v-model.number="form.dimensions.width"
+            v-model.number="form.dimensions!.width"
             type="number"
             min="0"
             step="0.1"
@@ -210,7 +210,7 @@
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">ارتفاع</label>
           <input
-            v-model.number="form.dimensions.height"
+            v-model.number="form.dimensions!.height"
             type="number"
             min="0"
             step="0.1"
@@ -284,7 +284,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, type PropType } from 'vue'
+import { ref, onMounted, type PropType, computed } from 'vue'
 import { useCategoriesStore } from '@/stores/categories'
 import { uploadImages } from '@/utils/upload'
 import type { Product, CreateProductRequest, UpdateProductRequest } from '@/types/types'
@@ -341,18 +341,23 @@ const form = ref<CreateProductRequest>({
 // Computed
 const categories = computed(() => categoriesStore.activeCategories)
 
+// Ensure dimensions is always defined
+if (!form.value.dimensions) {
+  form.value.dimensions = { length: 0, width: 0, height: 0 }
+}
+
 /**
  * Add material
  */
 const addMaterial = () => {
-  form.value.materials.push('')
+  form.value.materials?.push('')
 }
 
 /**
  * Remove material
  */
 const removeMaterial = (index: number) => {
-  form.value.materials.splice(index, 1)
+  form.value.materials?.splice(index, 1)
 }
 
 /**
@@ -370,10 +375,13 @@ const handleImageUpload = async (event: Event) => {
     const fileArray = Array.from(files)
     const uploadedImages = await uploadImages(fileArray)
 
-    form.value.images.push(...uploadedImages.map((img) => img.url))
-  } catch (error: any) {
+    if (form.value.images) {
+      form.value.images.push(...uploadedImages.map((img) => img.url))
+    }
+  } catch (error: unknown) {
     console.error('Upload error:', error)
-    alert(error.message || 'خطا در آپلود تصاویر')
+    const errorMessage = error instanceof Error ? error.message : 'خطا در آپلود تصاویر'
+    alert(errorMessage)
   } finally {
     isUploading.value = false
     if (imageInput.value) {
@@ -386,7 +394,7 @@ const handleImageUpload = async (event: Event) => {
  * Remove image
  */
 const removeImage = (index: number) => {
-  form.value.images.splice(index, 1)
+  form.value.images?.splice(index, 1)
 }
 
 /**
@@ -399,7 +407,7 @@ const handleSubmit = () => {
   const data = { ...form.value }
 
   // Remove empty materials
-  data.materials = data.materials.filter((m) => m.trim() !== '')
+  data.materials = data.materials?.filter((m) => m.trim() !== '')
 
   // Remove dimensions if all values are 0
   if (data.dimensions && data.dimensions.length === 0 && data.dimensions.width === 0 && data.dimensions.height === 0) {

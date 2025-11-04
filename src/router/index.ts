@@ -4,16 +4,6 @@
  */
 
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
-
-/**
- * Route meta interface
- */
-interface RouteMeta {
-  title?: string
-  requiresAuth?: boolean
-  requiresAdmin?: boolean
-}
 
 /**
  * Route definitions
@@ -26,7 +16,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: 'ورود به پنل ادمین',
       requiresAuth: false,
-    } as RouteMeta,
+    },
   },
   {
     path: '/',
@@ -36,7 +26,7 @@ const routes: RouteRecordRaw[] = [
       title: 'داشبورد',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // Products Routes
   {
@@ -47,7 +37,7 @@ const routes: RouteRecordRaw[] = [
       title: 'مدیریت محصولات',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   {
     path: '/products/create',
@@ -57,7 +47,7 @@ const routes: RouteRecordRaw[] = [
       title: 'ایجاد محصول جدید',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   {
     path: '/products/:id/edit',
@@ -67,7 +57,7 @@ const routes: RouteRecordRaw[] = [
       title: 'ویرایش محصول',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // Categories Routes
   {
@@ -78,7 +68,7 @@ const routes: RouteRecordRaw[] = [
       title: 'مدیریت دسته‌بندی‌ها',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // Orders Routes
   {
@@ -89,7 +79,7 @@ const routes: RouteRecordRaw[] = [
       title: 'مدیریت سفارشات',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   {
     path: '/orders/:id',
@@ -99,7 +89,7 @@ const routes: RouteRecordRaw[] = [
       title: 'جزئیات سفارش',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // Users Routes
   {
@@ -110,7 +100,7 @@ const routes: RouteRecordRaw[] = [
       title: 'مدیریت کاربران',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   {
     path: '/users/:id',
@@ -120,7 +110,7 @@ const routes: RouteRecordRaw[] = [
       title: 'جزئیات کاربر',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // Reviews Routes
   {
@@ -131,7 +121,7 @@ const routes: RouteRecordRaw[] = [
       title: 'مدیریت نظرات',
       requiresAuth: true,
       requiresAdmin: true,
-    } as RouteMeta,
+    },
   },
   // 404 Not Found
   {
@@ -140,7 +130,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/NotFoundView.vue'),
     meta: {
       title: 'صفحه یافت نشد',
-    } as RouteMeta,
+    },
   },
 ]
 

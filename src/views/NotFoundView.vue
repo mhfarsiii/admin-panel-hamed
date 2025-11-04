@@ -56,7 +56,7 @@ const goBack = () => {
 
 <style scoped>
 .not-found-view {
-  @apply min-h-screen flex items-center justify-center p-6;
+  @apply min-h-screen flex items-center justify-center  ;
 }
 </style>
 

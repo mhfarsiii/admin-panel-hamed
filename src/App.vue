@@ -8,7 +8,7 @@
       <!-- Sidebar -->
       <aside
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        class="fixed inset-y-0 right-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static"
+        class="fixed inset-y-0 right-0 z-50 w-64 text-black bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static"
       >
         <div class="flex flex-col h-full">
           <!-- Logo -->
@@ -112,9 +112,9 @@
           <div class="p-4 border-t border-gray-200">
             <div class="flex items-center gap-3 mb-3">
               <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                <span class="text-primary-600 font-semibold text-sm">
+                <!-- <span class="text-primary-600 font-semibold text-sm">
                   {{ authStore.userName.charAt(0) }}
-                </span>
+                </span> -->
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 truncate">{{ authStore.userName }}</p>

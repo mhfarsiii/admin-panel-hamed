@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('auth', {
      * Get user email
      */
     userEmail: (state): string => {
-      return state.user?.email || ''
+      return state.user?.email || 'mohsen@gmail.com'
     },
   },
 

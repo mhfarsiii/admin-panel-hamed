@@ -15,7 +15,7 @@
       <div class="flex items-center gap-4">
         <button
           @click="setFilter(undefined)"
-          :class="filters.approved === undefined ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'"
+          :class="filters.approved === undefined ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'"
           class="px-4 py-2 rounded-lg transition-colors"
         >
           همه نظرات

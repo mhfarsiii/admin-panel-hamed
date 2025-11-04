@@ -1,5 +1,5 @@
 <template>
-  <div class="container  mx-auto h-screen pt-20 overflow-hidden">
+  <div class="container  mx-auto h-screen pt-20 overflow-hidden text-black">
     <!-- toast -->
     <Toast />
     <!-- confirm logout -->

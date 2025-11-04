@@ -1,5 +1,5 @@
 <template>
-  <div class="orders-list-view">
+  <div class="orders-list-view text-black">
     <div class="mb-6">
       <h1 class="text-3xl font-bold text-gray-900">مدیریت سفارشات</h1>
       <p class="text-gray-600 mt-1">{{ ordersStore.totalOrders }} سفارش</p>

@@ -21,7 +21,7 @@
 import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/products'
 import ProductForm from '@/components/ProductForm.vue'
-import type { CreateProductRequest } from '@/types/types'
+import type { CreateProductRequest, UpdateProductRequest } from '@/types/types'
 
 const router = useRouter()
 const productsStore = useProductsStore()
@@ -29,18 +29,21 @@ const productsStore = useProductsStore()
 /**
  * Handle form submission
  */
-const handleSubmit = async (data: CreateProductRequest) => {
-  const product = await productsStore.createProduct(data)
+const handleSubmit = async (data: CreateProductRequest | UpdateProductRequest) => {
+  // Type guard: ensure required fields for create are present
+  if ('name' in data && 'slug' in data && 'categoryId' in data && 'stock' in data && 'price' in data) {
+    const product = await productsStore.createProduct(data as CreateProductRequest)
 
-  if (product) {
-    router.push('/products')
+    if (product) {
+      router.push('/products')
+    }
   }
 }
 </script>
 
-<style scoped>
+<!-- <style scoped>
 .product-create-view {
   @apply p-6;
 }
-</style>
+</style> -->
 
