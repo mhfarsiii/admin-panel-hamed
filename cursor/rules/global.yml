@@ -1,0 +1,416 @@
+# Cursor Rules for Vue 3 + TypeScript Project
+# Comprehensive guidelines for enterprise-level Vue 3 development
+
+project:
+  framework: vue3
+  version: "3.5+"
+  language: typescript
+  build_tool: vite
+  state_management: pinia
+  routing: vue-router
+  ui_library: primevue
+  styling: tailwindcss
+  http_client: axios
+
+# Vue 3 Component Architecture
+vue3:
+  component_structure:
+    - Always use Composition API with `<script setup>`
+    - Use TypeScript for type safety
+    - Follow Single Responsibility Principle
+    - Keep components small and focused (max 300 lines)
+    - Extract reusable logic into composables
+    - Use defineProps and defineEmits with TypeScript interfaces
+  
+  script_setup_pattern:
+    - Import order: Vue imports → Third-party → Internal utils → Types
+    - Use defineProps with TypeScript interfaces
+    - Use defineEmits with TypeScript types
+    - Use defineExpose only when necessary
+    - Prefer const for reactive declarations
+  
+  template_guidelines:
+    - Use kebab-case for component names in templates
+    - Use PascalCase for component definitions
+    - Always use v-if/v-else-if/v-else for conditional rendering (avoid v-show unless needed)
+    - Use :key for list items (prefer unique IDs over indices)
+    - Avoid inline styles, use Tailwind classes or scoped styles
+    - Use semantic HTML elements
+    - Always include aria-labels for accessibility
+  
+  reactivity:
+    - Prefer ref() for primitives
+    - Use reactive() for objects (be careful with destructuring)
+    - Use computed() for derived state
+    - Use watch() and watchEffect() appropriately
+    - Avoid deep watchers unless necessary
+    - Use readonly() when exposing reactive state without mutation
+
+# TypeScript Best Practices
+typescript:
+  strict_mode: true
+  type_safety:
+    - Always define interfaces/types for props, emits, and API responses
+    - Use type inference where appropriate, explicit types where clarity is needed
+    - Avoid using `any` - use `unknown` or proper types instead
+    - Use type guards for runtime type checking
+    - Define shared types in dedicated files (types/ directory)
+  
+  interfaces:
+    - Use interfaces for object shapes (prefer over type aliases for objects)
+    - Use type aliases for unions, intersections, and primitives
+    - Prefix API response interfaces with the resource name (e.g., CategoryResponse)
+    - Export interfaces that are used across multiple files
+  
+  generics:
+    - Use generics for reusable components and utilities
+    - Prefer generic constraints over type assertions
+
+# Component Organization
+components:
+  structure:
+    - Single File Components (SFC) with .vue extension
+    - Order: <template>, <script setup>, <style>
+    - Use scoped styles or CSS modules
+    - Component files in PascalCase (e.g., UserProfile.vue)
+  
+  naming:
+    - Components: PascalCase (e.g., UserProfile.vue)
+    - Composables: camelCase starting with 'use' (e.g., useAuth.ts)
+    - Utilities: camelCase (e.g., auth.ts)
+    - Types: PascalCase (e.g., User.ts)
+    - Constants: UPPER_SNAKE_CASE (e.g., API_ENDPOINTS.ts)
+  
+  composition:
+    - Extract business logic into composables
+    - Keep components focused on presentation
+    - Share state via Pinia stores, not props drilling
+    - Use provide/inject sparingly, prefer Pinia for global state
+
+# Pinia State Management
+pinia:
+  store_structure:
+    - Define interfaces for state
+    - Use defineStore with setup syntax for complex stores
+    - Group related state together
+    - Use getters for computed state
+    - Keep actions focused and testable
+  
+  patterns:
+    - One store per feature domain
+    - Use actions for async operations
+    - Update state immutably
+    - Handle loading and error states in stores
+    - Use TypeScript interfaces for state, getters, and actions
+  
+  naming:
+    - Store files: camelCase with 'Store' suffix (e.g., panelStore.ts)
+    - Store IDs: kebab-case (e.g., 'user-panel')
+    - Actions: camelCase verbs (e.g., fetchCategories, createUser)
+    - Getters: camelCase nouns (e.g., isAuthenticated, currentUser)
+
+# Vue Router
+router:
+  route_definition:
+    - Use lazy loading with dynamic imports for routes
+    - Define route meta with TypeScript interfaces
+    - Use route guards for authentication
+    - Implement proper error handling for route navigation
+  
+  navigation:
+    - Use router.push() for programmatic navigation
+    - Use router-link for declarative navigation
+    - Handle navigation errors gracefully
+    - Use named routes for better maintainability
+  
+  guards:
+    - Implement beforeEach guard for authentication
+    - Use route meta to define requirements
+    - Handle redirects properly
+    - Clear sensitive data on logout
+
+# API Integration
+api:
+  client: axios
+  base_url:
+    development: "http://localhost:3000/api/v1"
+    production: "https://api.moramor.com/api/v1"
+  
+  patterns:
+    - Create axios instance with base configuration
+    - Use interceptors for auth tokens and error handling
+    - Define response types for all API calls
+    - Handle loading states in stores
+    - Implement proper error handling with user-friendly messages
+    - Always use types from src/types/types.d.ts for API requests/responses
+    - Use FormData for file uploads (categories, works, images)
+    - Use JSON for standard data requests
+  
+  error_handling:
+    - Catch errors at appropriate levels
+    - Provide meaningful error messages to users
+    - Log errors for debugging
+    - Handle network errors gracefully
+    - Use try-catch-finally for async operations
+    - Type error responses using ErrorResponse interface from types.d.ts
+  
+  types:
+    - All API types are defined in src/types/types.d.ts
+    - Use ApiResponse<T> wrapper for standard responses
+    - Use PaginatedResponse<T> for paginated list endpoints
+    - Import types from '@/types/types' when needed
+    - Define request/response interfaces for each endpoint
+    - Use generics for API response wrappers
+    - Type all API endpoints explicitly
+    - Validate API responses when necessary
+  
+  admin_endpoints:
+    authentication:
+      - POST /admin/login: AdminLoginRequest → AdminLoginResponse
+    categories:
+      - GET /categories: → CategoriesListResponse
+      - POST /categories: CreateCategoryRequest (FormData) → ApiResponse<CreateCategoryResponse>
+    works:
+      - GET /works: → WorksListResponse
+      - POST /works: CreateWorkRequest (FormData) → ApiResponse<CreateWorkResponse>
+    products:
+      - GET /products: ProductsListQuery → ProductsListResponse
+      - GET /products/:id: → ProductResponse
+      - GET /products/slug/:slug: → ProductResponse
+      - POST /products: CreateProductRequest → ApiResponse<Product>
+    upload:
+      - POST /upload/image: UploadImageRequest (FormData) → UploadImageResponse
+      - POST /upload/images: UploadImagesRequest (FormData) → UploadImagesResponse
+    orders:
+      - GET /orders: OrdersListQuery → OrdersListResponse
+      - GET /orders/:id: → OrderResponse
+  
+  type_usage_examples:
+    - "import type { CreateCategoryRequest, CategoriesListResponse } from '@/types/types'"
+    - "const response = await axios.post<ApiResponse<CreateCategoryResponse>>('api/categories', formData)"
+    - "const response = await axios.get<CategoriesListResponse>('api/categories')"
+    - "const query: ProductsListQuery = { page: 1, limit: 16, category: 'necklaces' }"
+
+# Styling Guidelines
+styling:
+  framework: tailwindcss
+  approach:
+    - Use Tailwind utility classes primarily
+    - Use scoped styles for component-specific CSS
+    - Avoid inline styles
+    - Use CSS variables for theming
+    - Follow mobile-first responsive design
+  
+  component_library:
+    - Use PrimeVue components for complex UI elements
+    - Customize PrimeVue theme via Tailwind
+    - Maintain consistent spacing using Tailwind scale
+    - Use semantic color names
+
+# File Organization
+file_structure:
+  src:
+    - components/: Reusable UI components
+    - views/: Route-level components
+    - stores/: Pinia stores
+    - router/: Route definitions
+    - utils/: Utility functions and helpers
+    - types/: TypeScript type definitions
+    - composables/: Reusable composition functions
+    - assets/: Static assets
+    - api/: API client configuration and endpoints
+  
+  naming_conventions:
+    - Files: kebab-case for utilities, PascalCase for components
+    - Directories: kebab-case
+    - Exports: Named exports preferred, default for main component
+
+# Code Quality
+code_quality:
+  linting:
+    - Follow ESLint rules
+    - Fix all linting errors before committing
+    - Use Prettier for code formatting
+    - Maintain consistent code style
+  
+  performance:
+    - Use v-show for frequent toggles, v-if for conditional rendering
+    - Lazy load routes and heavy components
+    - Use computed properties for expensive calculations
+    - Avoid unnecessary re-renders with proper key usage
+    - Use v-memo for expensive list rendering
+    - Optimize images and assets
+  
+  security:
+    - Never commit API keys or secrets
+    - Sanitize user inputs
+    - Validate data on both client and server
+    - Use HTTPS in production
+    - Implement proper authentication and authorization
+    - Protect against XSS attacks
+    - Use environment variables for configuration
+
+# Best Practices
+best_practices:
+  general:
+    - Write self-documenting code with meaningful names
+    - Add comments for complex business logic
+    - Keep functions small and focused
+    - Avoid deep nesting (max 3 levels)
+    - Use early returns to reduce nesting
+    - Extract magic numbers and strings into constants
+  
+  vue_specific:
+    - Use provide/inject for dependency injection
+    - Prefer composition over inheritance
+    - Use teleport for modals and overlays
+    - Implement proper error boundaries
+    - Use Suspense for async components
+    - Leverage Vue DevTools for debugging
+  
+  async_operations:
+    - Always handle loading states
+    - Show user feedback for async operations
+    - Implement proper error handling
+    - Use async/await over promises
+    - Cancel requests when component unmounts
+  
+  testing:
+    - Write unit tests for utilities and composables
+    - Test component behavior, not implementation
+    - Use Vitest for unit testing
+    - Mock external dependencies
+    - Test error scenarios
+
+# Environment Configuration
+environment:
+  variables:
+    - Use .env files for environment-specific config
+    - Prefix environment variables with VITE_
+    - Never commit .env files with secrets
+    - Use type-safe environment variable access
+  
+  development:
+    - Use Vue DevTools extension
+    - Enable source maps in development
+    - Use hot module replacement effectively
+    - Implement proper logging (remove in production)
+
+# Build and Deployment
+build:
+  tool: vite
+  optimization:
+    - Enable code splitting
+    - Optimize bundle size
+    - Use tree-shaking
+    - Minify and compress assets
+    - Implement proper caching strategies
+  
+  production:
+    - Remove console.logs in production
+    - Use production builds
+    - Enable source maps for debugging (optional)
+    - Implement proper error tracking
+
+# Code Generation Rules
+code_generation:
+  when_creating_components:
+    - Always use <script setup lang="ts">
+    - Define TypeScript interfaces for props
+    - Include proper error handling
+    - Add loading states where applicable
+    - Use Tailwind classes for styling
+    - Include accessibility attributes
+    - Export component types if needed
+  
+  when_creating_stores:
+    - Define TypeScript interfaces for state
+    - Include loading and error states
+    - Implement proper error handling in actions
+    - Use TypeScript for all store methods
+    - Export store types if needed
+  
+  when_creating_utils:
+    - Use TypeScript with proper types
+    - Make functions pure when possible
+    - Add JSDoc comments for complex functions
+    - Export types along with functions
+  
+  when_creating_composables:
+    - Use 'use' prefix for naming
+    - Return reactive refs/computed from composables
+    - Handle cleanup in onUnmounted if needed
+    - Export types for return values
+    - Make composables reusable and focused
+
+# Integration Guidelines
+integration:
+  project_consistency:
+    - All new code must follow existing patterns
+    - Maintain consistent naming across the project
+    - Use existing utilities and composables when available
+    - Follow the established file structure
+    - Keep API patterns consistent
+  
+  dependencies:
+    - Use existing libraries when possible
+    - Avoid duplicate functionality
+    - Keep dependencies up to date
+    - Document new dependencies and their purpose
+
+# Documentation
+documentation:
+  code:
+    - Write self-documenting code
+    - Add JSDoc comments for public APIs
+    - Document complex business logic
+    - Include examples in composable documentation
+  
+  comments:
+    - Explain 'why', not 'what'
+    - Keep comments up to date
+    - Remove commented-out code
+    - Use TODO comments with context
+
+# Error Handling Strategy
+error_handling:
+  levels:
+    - Component level: UI errors and user feedback
+    - Store level: Business logic errors
+    - API level: Network and server errors
+    - Global level: Unhandled errors and fallbacks
+  
+  user_experience:
+    - Show user-friendly error messages
+    - Provide actionable error information
+    - Log technical details for debugging
+    - Implement retry mechanisms where appropriate
+    - Handle offline scenarios gracefully
+
+# Accessibility
+accessibility:
+  requirements:
+    - Use semantic HTML elements
+    - Include ARIA labels where needed
+    - Ensure keyboard navigation
+    - Maintain proper focus management
+    - Test with screen readers
+    - Ensure sufficient color contrast
+    - Provide alternative text for images
+
+# Performance Monitoring
+performance:
+  metrics:
+    - Monitor bundle size
+    - Track load times
+    - Measure component render times
+    - Optimize expensive operations
+    - Use performance markers for debugging
+  
+  optimization:
+    - Lazy load heavy components
+    - Use virtual scrolling for long lists
+    - Debounce/throttle user inputs
+    - Optimize images and assets
+    - Use CDN for static assets when appropriate
+
