@@ -4,6 +4,7 @@
  */
 
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 /**
  * Route definitions
@@ -158,47 +159,47 @@ const router = createRouter({
  * Global navigation guard
  * Handles authentication and authorization
  */
-// router.beforeEach(async (to, from, next) => {
-//   const authStore = useAuthStore()
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
 
-//   // Set page title
-//   if (to.meta.title) {
-//     document.title = `${to.meta.title} | پنل ادمین مُرامُر`
-//   }
+  // Set page title
+  if (to.meta.title) {
+    document.title = `${to.meta.title} | پنل ادمین مُرامُر`
+  }
 
-//   // Check if route requires authentication
-//   if (to.meta.requiresAuth) {
-//     // If not authenticated, redirect to login
-//     if (!authStore.isAuthenticated) {
-//       // Try to initialize auth from stored token
-//       await authStore.initializeAuth()
+  // Check if route requires authentication
+  if (to.meta.requiresAuth) {
+    // If not authenticated, redirect to login
+    if (!authStore.isAuthenticated) {
+      // Try to initialize auth from stored token
+      await authStore.initializeAuth()
 
-//       // If still not authenticated, redirect to login
-//       if (!authStore.isAuthenticated) {
-//         next({
-//           name: 'login',
-//           query: { redirect: to.fullPath },
-//         })
-//         return
-//       }
-//     }
+      // If still not authenticated, redirect to login
+      if (!authStore.isAuthenticated) {
+        next({
+          name: 'login',
+          query: { redirect: to.fullPath },
+        })
+        return
+      }
+    }
 
-//     // Check if route requires admin role
-//     if (to.meta.requiresAdmin && !authStore.isAdmin) {
-//       console.error('دسترسی غیرمجاز: شما اجازه دسترسی به این صفحه را ندارید')
-//       next({ name: 'dashboard' })
-//       return
-//     }
-//   }
+    // Check if route requires admin role
+    if (to.meta.requiresAdmin && !authStore.isAdmin) {
+      console.error('دسترسی غیرمجاز: شما اجازه دسترسی به این صفحه را ندارید')
+      next({ name: 'dashboard' })
+      return
+    }
+  }
 
-//   // If authenticated and trying to access login page, redirect to dashboard
-//   if (to.name === 'login' && authStore.isAuthenticated) {
-//     next({ name: 'dashboard' })
-//     return
-//   }
+  // If authenticated and trying to access login page, redirect to dashboard
+  if (to.name === 'login' && authStore.isAuthenticated) {
+    next({ name: 'dashboard' })
+    return
+  }
 
-//   next()
-// })
+  next()
+})
 
 /**
  * Global error handler for navigation

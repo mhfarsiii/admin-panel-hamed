@@ -1,5 +1,5 @@
 <template>
-  <div class="login-view min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 p-6">
+  <div class="login-view min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 p-[1.5rem]">
     <div class="w-full max-w-md">
       <!-- Logo -->
       <div class="text-center mb-8">
@@ -62,7 +62,7 @@
           <button
             type="submit"
             :disabled="authStore.isLoading"
-            class="w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            class="w-full px-6 py-3 bg-primary-600 text-balck cursor-pointer border rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             <span v-if="authStore.isLoading" class="flex items-center justify-center gap-2">
               <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import type { LoginRequest } from '@/types/types'
@@ -117,9 +117,15 @@ const handleLogin = async () => {
   try {
     await authStore.login(form.value)
 
-    if (authStore.success) {
-      // Redirect to dashboard
-      router.push('/')
+    if (authStore.success && authStore.isAuthenticated) {
+      // Wait for state to be fully updated
+      await nextTick()
+
+      // Get redirect path from query or default to dashboard
+      const redirect = router.currentRoute.value.query.redirect as string || '/'
+
+      // Redirect to dashboard or intended page
+      router.replace(redirect)
     }
   } catch (error) {
     console.error('Login failed:', error)

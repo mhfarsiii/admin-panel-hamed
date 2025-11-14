@@ -12,7 +12,7 @@
       >
         <div class="flex flex-col h-full">
           <!-- Logo -->
-          <div class="flex items-center justify-between p-6 border-b border-gray-200">
+          <div class="flex items-center justify-between p-[1.5rem] border-b border-gray-200">
             <h1 class="text-2xl font-bold text-primary-600">پنل ادمین</h1>
             <button
               @click="sidebarOpen = false"

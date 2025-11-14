@@ -280,7 +280,7 @@ onMounted(() => {
 
 <!-- <style scoped>
 .orders-list-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style> -->
 

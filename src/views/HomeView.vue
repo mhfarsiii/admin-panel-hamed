@@ -16,7 +16,7 @@
 
     <div class="w-full flex flex-nowrap">
       <!-- tab bar-->
-      <div class="flex flex-col justify-between gap-2 border-r-1  border-white/20 p-6">
+      <div class="flex flex-col justify-between gap-2 border-r-1  border-white/20 p-[1.5rem]">
         <div class="flex flex-col gap-3">
           <div class="cursor-pointer  hover:text-gray-500 flex items-center flex-nowrap gap-2"
             :class="{ 'text-blue-500': activeTab === 'createWork', 'text-white': activeTab !== 'createWork' }"

@@ -70,7 +70,7 @@ onMounted(async () => {
 
 <style scoped>
 .product-edit-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style>
 

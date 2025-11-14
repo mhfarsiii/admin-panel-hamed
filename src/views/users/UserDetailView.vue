@@ -21,11 +21,11 @@
         </router-link>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-[1.5rem]">
         <!-- Main Content -->
         <div class="lg:col-span-2 space-y-6">
           <!-- User Information -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">اطلاعات کاربر</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -67,7 +67,7 @@
 
           <!-- User Orders -->
           <div v-if="user.orders && user.orders.length > 0" class="bg-white rounded-lg shadow">
-            <div class="p-6 border-b border-gray-200">
+            <div class="p-[1.5rem] border-b border-gray-200">
               <h2 class="text-lg font-semibold text-gray-900">سفارشات کاربر</h2>
             </div>
             <div class="divide-y divide-gray-200">
@@ -99,7 +99,7 @@
 
           <!-- User Addresses -->
           <div v-if="user.addresses && user.addresses.length > 0" class="bg-white rounded-lg shadow">
-            <div class="p-6 border-b border-gray-200">
+            <div class="p-[1.5rem] border-b border-gray-200">
               <h2 class="text-lg font-semibold text-gray-900">آدرس‌های کاربر</h2>
             </div>
             <div class="divide-y divide-gray-200">
@@ -124,7 +124,7 @@
         <!-- Sidebar -->
         <div class="space-y-6">
           <!-- Statistics -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">آمار کاربر</h2>
             <div class="space-y-3">
               <div class="flex items-center justify-between">
@@ -259,7 +259,7 @@ onMounted(() => {
 
 <style scoped>
 .user-detail-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style>
 

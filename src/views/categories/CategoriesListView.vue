@@ -24,13 +24,13 @@
     </div>
 
     <!-- Categories Grid -->
-    <div v-else-if="categories.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div v-else-if="categories.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.5rem]">
       <div
         v-for="category in categories"
         :key="category.id"
         class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
       >
-        <div class="p-6">
+        <div class="p-[1.5rem]">
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <h3 class="text-lg font-semibold text-gray-900">{{ category.name }}</h3>
@@ -147,10 +147,7 @@
               <span class="text-sm text-gray-700">دسته‌بندی فعال است</span>
             </label>
           </div>
-        </form>
-      </template>
-      <template #footer>
-        <div class="flex justify-end gap-3">
+          <div class="flex justify-end gap-3">
           <button
             @click="closeModal"
             type="button"
@@ -161,12 +158,14 @@
           <button
             @click="handleSubmit"
             :disabled="categoriesStore.isLoading"
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+            class="px-4 py-2 border border-gray-300 text-black rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
           >
             {{ categoriesStore.isLoading ? 'در حال ذخیره...' : 'ذخیره' }}
           </button>
         </div>
+        </form>
       </template>
+
     </BaseModal>
 
     <!-- Delete Confirmation Modal -->
@@ -177,8 +176,6 @@
       <template #body>
         <p class="text-gray-600">آیا از حذف دسته‌بندی "{{ categoryToDelete?.name }}" اطمینان دارید؟</p>
         <p class="text-sm text-red-600 mt-2">این عملیات قابل بازگشت نیست.</p>
-      </template>
-      <template #footer>
         <div class="flex justify-end gap-3">
           <button
             @click="showDeleteModal = false"
@@ -195,6 +192,7 @@
           </button>
         </div>
       </template>
+
     </BaseModal>
   </div>
 </template>
@@ -302,7 +300,7 @@ onMounted(() => {
 
 <style scoped>
 /* .categories-list-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 } */
 
 .line-clamp-2 {

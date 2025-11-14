@@ -11,9 +11,9 @@
     </div>
 
     <!-- Statistics Cards -->
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1.5rem] mb-8">
       <!-- Total Products -->
-      <div class="bg-white rounded-lg shadow p-6">
+      <div class="bg-white rounded-lg shadow p-[1.5rem]">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-medium text-gray-600">محصولات</p>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- Total Orders -->
-      <div class="bg-white rounded-lg shadow p-6">
+      <div class="bg-white rounded-lg shadow p-[1.5rem]">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-medium text-gray-600">سفارشات</p>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- Pending Orders -->
-      <div class="bg-white rounded-lg shadow p-6">
+      <div class="bg-white rounded-lg shadow p-[1.5rem]">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-medium text-gray-600">سفارشات در انتظار</p>
@@ -73,7 +73,7 @@
       </div>
 
       <!-- Total Users -->
-      <div class="bg-white rounded-lg shadow p-6">
+      <div class="bg-white rounded-lg shadow p-[1.5rem]">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-medium text-gray-600">کاربران</p>
@@ -94,18 +94,18 @@
     </div>
 
     <!-- Recent Activity -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-[1.5rem]">
       <!-- Recent Orders -->
       <div class="bg-white rounded-lg shadow">
-        <div class="p-6 border-b border-gray-200">
+        <div class="p-[1.5rem] border-b border-gray-200">
           <h2 class="text-lg font-semibold text-gray-900">آخرین سفارشات</h2>
         </div>
-        <div v-if="ordersStore.isLoading" class="p-6">
+        <div v-if="ordersStore.isLoading" class="p-[1.5rem]">
           <div class="animate-pulse space-y-4">
             <div v-for="i in 5" :key="i" class="h-12 bg-gray-200 rounded"></div>
           </div>
         </div>
-        <div v-else-if="ordersStore.orders.length === 0" class="p-6 text-center text-gray-500">
+        <div v-else-if="ordersStore.orders.length === 0" class="p-[1.5rem] text-center text-gray-500">
           سفارشی موجود نیست
         </div>
         <div v-else class="divide-y divide-gray-200">
@@ -148,15 +148,15 @@
 
       <!-- Pending Reviews -->
       <div class="bg-white rounded-lg shadow">
-        <div class="p-6 border-b border-gray-200">
+        <div class="p-[1.5rem] border-b border-gray-200">
           <h2 class="text-lg font-semibold text-gray-900">نظرات در انتظار تایید</h2>
         </div>
-        <div v-if="reviewsStore.isLoading" class="p-6">
+        <div v-if="reviewsStore.isLoading" class="p-[1.5rem]">
           <div class="animate-pulse space-y-4">
             <div v-for="i in 5" :key="i" class="h-12 bg-gray-200 rounded"></div>
           </div>
         </div>
-        <div v-else-if="reviewsStore.pendingReviews.length === 0" class="p-6 text-center text-gray-500">
+        <div v-else-if="reviewsStore.pendingReviews.length === 0" class="p-[1.5rem] text-center text-gray-500">
           نظری در انتظار تایید نیست
         </div>
         <div v-else class="divide-y divide-gray-200">
@@ -311,7 +311,7 @@ onMounted(() => {
 
 <!-- <style scoped>
 .dashboard-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style> -->
 

@@ -21,16 +21,16 @@
         </router-link>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-[1.5rem]">
         <!-- Main Content -->
         <div class="lg:col-span-2 space-y-6">
           <!-- Order Items -->
           <div class="bg-white rounded-lg shadow">
-            <div class="p-6 border-b border-gray-200">
+            <div class="p-[1.5rem] border-b border-gray-200">
               <h2 class="text-lg font-semibold text-gray-900">محصولات سفارش</h2>
             </div>
             <div class="divide-y divide-gray-200">
-              <div v-for="item in order.items" :key="item.id" class="p-6 flex items-center gap-4">
+              <div v-for="item in order.items" :key="item.id" class="p-[1.5rem] flex items-center gap-4">
                 <img
                   v-if="item.product.images && item.product.images[0]"
                   :src="item.product.images[0]"
@@ -55,7 +55,7 @@
           </div>
 
           <!-- Shipping Address -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">آدرس ارسال</h2>
             <div class="space-y-2 text-sm">
               <p><strong>گیرنده:</strong> {{ order.address.receiverName }}</p>
@@ -77,7 +77,7 @@
         <!-- Sidebar -->
         <div class="space-y-6">
           <!-- Order Summary -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">خلاصه سفارش</h2>
             <div class="space-y-3 text-sm">
               <div class="flex justify-between">
@@ -100,7 +100,7 @@
           </div>
 
           <!-- Customer Info -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">اطلاعات مشتری</h2>
             <div class="space-y-2 text-sm">
               <p><strong>نام:</strong> {{ order.user.name }}</p>
@@ -110,7 +110,7 @@
           </div>
 
           <!-- Order Status -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">وضعیت سفارش</h2>
             <div class="space-y-4">
               <div>
@@ -137,7 +137,7 @@
           </div>
 
           <!-- Update Status -->
-          <div class="bg-white rounded-lg shadow p-6">
+          <div class="bg-white rounded-lg shadow p-[1.5rem]">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">به‌روزرسانی وضعیت</h2>
             <form @submit.prevent="handleStatusUpdate" class="space-y-4">
               <div>
@@ -383,7 +383,7 @@ onMounted(async () => {
 
 <style scoped>
 .order-detail-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style>
 

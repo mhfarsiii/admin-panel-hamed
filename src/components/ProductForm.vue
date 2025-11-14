@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-6">
     <!-- Basic Information -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">اطلاعات پایه</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,7 +115,7 @@
     </div>
 
     <!-- Materials -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">مواد اولیه</h2>
 
       <div class="space-y-2">
@@ -144,7 +144,7 @@
     </div>
 
     <!-- Images -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">تصاویر محصول</h2>
 
       <div class="mb-4">
@@ -183,7 +183,7 @@
     </div>
 
     <!-- Dimensions -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">ابعاد (سانتی‌متر)</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -221,7 +221,7 @@
     </div>
 
     <!-- SEO -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">تنظیمات SEO</h2>
 
       <div class="space-y-4">
@@ -249,7 +249,7 @@
     </div>
 
     <!-- Status -->
-    <div class="bg-white rounded-lg shadow p-6">
+    <div class="bg-white rounded-lg shadow p-[1.5rem]">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">وضعیت</h2>
 
       <div class="space-y-4">
@@ -275,7 +275,7 @@
       <button
         type="submit"
         :disabled="isSubmitting"
-        class="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+        class="px-6 py-3 bg-primary-600 text-black bg-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
       >
         {{ isSubmitting ? 'در حال ذخیره...' : submitLabel }}
       </button>

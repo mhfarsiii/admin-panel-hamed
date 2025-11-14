@@ -6,4 +6,9 @@
     @apply bg-black;
     font-family: "Roboto", sans-serif;
   }
+
+  input, textarea ,button {
+    @apply bg-white text-black;
+  }
+
 }

@@ -8,7 +8,7 @@
       </div>
       <router-link
         to="/products/create"
-        class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
+        class="px-4 py-2 bg-primary-600 text-black rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -373,7 +373,7 @@ onMounted(async () => {
 
 <!-- <style scoped>
 .products-list-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style> -->
 

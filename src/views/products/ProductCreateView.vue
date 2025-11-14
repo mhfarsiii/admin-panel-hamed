@@ -43,7 +43,7 @@ const handleSubmit = async (data: CreateProductRequest | UpdateProductRequest) =
 
 <!-- <style scoped>
 .product-create-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style> -->
 

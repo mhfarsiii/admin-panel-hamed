@@ -51,7 +51,7 @@
         :key="review.id"
         class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
       >
-        <div class="p-6">
+        <div class="p-[1.5rem]">
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-2">
@@ -280,7 +280,7 @@ onMounted(() => {
 
 <!-- <style scoped>
 .reviews-list-view {
-  @apply p-6;
+  @apply p-[1.5rem];
 }
 </style> -->
 
