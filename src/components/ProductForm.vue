@@ -160,7 +160,7 @@
           type="button"
           @click="imageInput?.click()"
           :disabled="isUploading"
-          class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+          class="px-4 py-2 bg-primary-600 text-white bg-black cursor-pointer rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
         >
           {{ isUploading ? 'در حال آپلود...' : '+ آپلود تصاویر' }}
         </button>
