@@ -1,0 +1,74 @@
+name: Panel Build and Deploy
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        # TODO: اگر از workspace استفاده می‌کنید، ممکن است نیاز به تغییر این دستور باشد
+        # مثال: cd apps/admin-panel-hamed && npm ci
+        run: npm ci
+        working-directory: ./apps/admin-panel-hamed
+
+      - name: Build Project
+        # TODO: مسیر بیلد را بررسی کنید - برای Vite معمولاً dist/ است
+        run: npm run build
+        working-directory: ./apps/admin-panel-hamed
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          # TODO: مسیر خروجی بیلد را بررسی کنید
+          # برای Vite معمولاً apps/admin-panel-hamed/dist/ است
+          path: apps/admin-panel-hamed/dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: dist-folder
+
+      - name: Copy Files to Server via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          # مسیر source: چون path در upload-artifact برابر apps/admin-panel-hamed/dist/ است
+          # پس در dist-folder ساختار apps/admin-panel-hamed/dist/ خواهد بود
+          source: "dist-folder/apps/admin-panel-hamed/dist/*"
+          # این مسیر باید با root در panel.conf و volume در docker-compose.yml مطابقت داشته باشد
+          # مسیر در panel.conf: root /var/www/panel-project;
+          # مسیر در docker-compose.yml: - /var/www/panel-project:/var/www/panel-project:ro
+          target: "/var/www/panel-project"
+          # strip_components: 3 چون می‌خواهیم apps/admin-panel-hamed/dist را حذف کنیم
+          strip_components: 3
+
+      - name: Reload Nginx
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: |
+            # TODO: نام کانتینر nginx را بررسی کنید
+            # بر اساس docker-compose.yml، نام کانتینر moramor-nginx است
+            # اگر نام متفاوت است، آن را تغییر دهید
+            docker exec moramor-nginx nginx -t && docker exec moramor-nginx nginx -s reload || echo "Nginx reload failed or not needed"

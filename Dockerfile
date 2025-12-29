@@ -1,31 +1,19 @@
-# Simple Vue.js Frontend Panel Dockerfile
-FROM node:18-alpine
+# استفاده از نسخه سبک نود
+FROM node:22-alpine
 
 WORKDIR /app
 
-# Install serve globally
-RUN npm install -g serve
-
-# Copy package files
+# کپی کردن فایل‌های کانفیگ برای نصب دپندنس‌ها
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --legacy-peer-deps
+# نصب کتابخانه‌ها
+RUN npm install
 
-# Copy source code
+# کپی کردن کل کد پروژه
 COPY . .
 
-
-
-# Build the application
+# اجرای دستور بیلد
 RUN npm run build
 
-# Set permissions
-RUN chown -R node:node /app
-
-USER node
-
-EXPOSE 3000
-
-# Start the application
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# این کانتینر فقط نقش بیلد دارد و بعد از اتمام کار متوقف می‌شود
+CMD ["echo", "Build completed successfully"]
