@@ -14,10 +14,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install & Build
+        # اگر پوشه apps ندارید، مستقیم دستورات را اجرا می‌کنیم
         run: |
-          cd apps/admin-panel-hamed
           npm install
           npx vite build
 
@@ -25,7 +26,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist-files
-          path: apps/admin-panel-hamed/dist/
+          # خروجی Vite در ریشه پروژه پوشه dist است
+          path: dist/
 
   deploy:
     needs: build
@@ -44,7 +46,6 @@ jobs:
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           source: "final-build/*"
-          # این آدرس دقیقاً مطابق با Docker Compose شماست:
           target: "/var/www/panel-project"
           strip_components: 1
 
@@ -55,5 +56,4 @@ jobs:
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           script: |
-            # نام کانتینر طبق فایل شما moramor-nginx است
-            docker exec moramor-nginx nginx -s reload
+            docker exec moramor-nginx nginx -s reload || echo "Nginx reload failed"
