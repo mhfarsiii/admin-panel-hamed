@@ -7,7 +7,10 @@ import axios, { type AxiosInstance, type InternalAxiosRequestConfig, type AxiosE
 import type { ErrorResponse } from '@/types/types'
 
 // Base URL from environment variable or default
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1'
+// In development, use relative URL to leverage Vite proxy
+// In production, use full URL or environment variable
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? '/api/v1' : 'https://api.moramor.shop/api/v1')
 
 /**
  * Create axios instance with default configuration
