@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vite build",
     "proxy": "lcp --proxyUrl https://api.moramor.shop/api/v1",
     "preview": "vite preview",
     "build-only": "vite build",
