@@ -185,7 +185,7 @@
 
     <!-- Sidebar Overlay (Mobile) -->
     <div
-      v-if="sidebarOpen"
+      v-if="sidebarOpen && route.name !== 'login' "
       @click="sidebarOpen = false"
       class="fixed inset-0 bg-black/50 bg-opacity-50 z-40 lg:hidden"
     ></div>
@@ -210,6 +210,7 @@ const sidebarOpen = ref(false)
 const handleLogout = () => {
   authStore.logout()
   router.push('/login')
+  sidebarOpen.value = false
 }
 </script>
 

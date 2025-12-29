@@ -11,7 +11,7 @@ import type {
   LoginResponse,
   User,
 } from '@/types/types'
-import { useRouter } from 'vue-router'
+import router from '@/router'
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
@@ -106,9 +106,10 @@ export const useAuthStore = defineStore('auth', {
     logout(): void {
       this.clearAuth()
 
-      // Navigate to login page
-      const router = useRouter()
-      router.push('/login')
+
+      router.replace({
+        name: 'login'
+      })
     },
 
     /**
