@@ -23,6 +23,15 @@ jobs:
         # TODO: مسیر بیلد را بررسی کنید - برای Vite معمولاً dist/ است
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
+            echo "Error: dist directory is empty or does not exist"
+            exit 1
+          fi
+          echo "Build output verified:"
+          ls -la dist/
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -30,6 +39,7 @@ jobs:
           # TODO: مسیر خروجی بیلد را بررسی کنید
           # برای Vite معمولاً dist/ است
           path: dist/
+          if-no-files-found: error
 
   deploy:
     needs: build
@@ -41,6 +51,13 @@ jobs:
           name: dist-files
           path: dist-folder
 
+      - name: List downloaded files (debug)
+        run: |
+          echo "Contents of dist-folder:"
+          ls -la dist-folder/ || echo "dist-folder not found"
+          echo "Contents of dist-folder/dist (if exists):"
+          ls -la dist-folder/dist/ || echo "dist-folder/dist not found"
+
       - name: Copy Files to Server via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -49,7 +66,7 @@ jobs:
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           # مسیر source: چون path در upload-artifact برابر dist/ است
           # پس در dist-folder ساختار dist/ خواهد بود
-          source: "dist-folder/dist/*"
+          source: "dist-folder/dist"
           # این مسیر باید با root در panel.conf و volume در docker-compose.yml مطابقت داشته باشد
           # مسیر در panel.conf: root /var/www/panel-project;
           # مسیر در docker-compose.yml: - /var/www/panel-project:/var/www/panel-project:ro
