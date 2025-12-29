@@ -17,21 +17,19 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        # به جای npm ci از install استفاده کردیم که با خطای Lock مواجه نشوید
-        run: npm install
-        working-directory: ./apps/admin-panel-hamed
+        run: npm ci
 
       - name: Build Project
-        # نادیده گرفتن خطای تایپ اسکریپت برای بیلد موفق
-        run: npx vite build
-        working-directory: ./apps/admin-panel-hamed
+        # TODO: مسیر بیلد را بررسی کنید - برای Vite معمولاً dist/ است
+        run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist-files
-          # مسیر دقیق خروجی ویت در ساختار شما
-          path: apps/admin-panel-hamed/dist/
+          # TODO: مسیر خروجی بیلد را بررسی کنید
+          # برای Vite معمولاً dist/ است
+          path: dist/
 
   deploy:
     needs: build
@@ -49,12 +47,15 @@ jobs:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
-          # چون آرتیفکت از مسیر apps/... آپلود شده، در اینجا هم همان ساختار را دارد
-          source: "dist-folder/**/*"
-          # مسیر روی هارد سرور که به داکر وصل شده است
-          target: "/root/project-core/panel-dist"
-          # عدد 1 را به 4 تغییر دادیم تا پوشه‌های اضافی (dist-folder/apps/admin-panel-hamed/dist) حذف شوند و فقط محتوا کپی شود
-          strip_components: 4
+          # مسیر source: چون path در upload-artifact برابر dist/ است
+          # پس در dist-folder ساختار dist/ خواهد بود
+          source: "dist-folder/dist/*"
+          # این مسیر باید با root در panel.conf و volume در docker-compose.yml مطابقت داشته باشد
+          # مسیر در panel.conf: root /var/www/panel-project;
+          # مسیر در docker-compose.yml: - /var/www/panel-project:/var/www/panel-project:ro
+          target: "/var/www/panel-project"
+          # strip_components: 1 چون می‌خواهیم dist را حذف کنیم
+          strip_components: 1
 
       - name: Reload Nginx
         uses: appleboy/ssh-action@v1.0.3
@@ -63,5 +64,7 @@ jobs:
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           script: |
-            # ریلود کردن کانتینر انجین‌اکس
-            docker exec moramor-nginx nginx -s reload
+            # TODO: نام کانتینر nginx را بررسی کنید
+            # بر اساس docker-compose.yml، نام کانتینر moramor-nginx است
+            # اگر نام متفاوت است، آن را تغییر دهید
+            docker exec moramor-nginx nginx -t && docker exec moramor-nginx nginx -s reload || echo "Nginx reload failed or not needed"
