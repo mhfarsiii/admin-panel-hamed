@@ -62,7 +62,7 @@
           <button
             type="submit"
             :disabled="authStore.isLoading"
-            class="w-full px-6 py-3 bg-primary-600 text-balck cursor-pointer border rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            class="w-full px-6 py-3 bg-primary-600 text-black cursor-pointer border rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             <span v-if="authStore.isLoading" class="flex items-center justify-center gap-2">
               <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
