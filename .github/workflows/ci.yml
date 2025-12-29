@@ -14,74 +14,46 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build Project
-        # TODO: مسیر بیلد را بررسی کنید - برای Vite معمولاً dist/ است
-        run: npm run build
-
-      - name: Verify build output
+      - name: Install & Build
         run: |
-          if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
-            echo "Error: dist directory is empty or does not exist"
-            exit 1
-          fi
-          echo "Build output verified:"
-          ls -la dist/
+          cd apps/admin-panel-hamed
+          npm install
+          npx vite build
 
-      - name: Upload Build Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist-files
-          # TODO: مسیر خروجی بیلد را بررسی کنید
-          # برای Vite معمولاً dist/ است
-          path: dist/
-          if-no-files-found: error
+          path: apps/admin-panel-hamed/dist/
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download Build Artifact
+      - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: dist-files
-          path: dist-folder
+          path: final-build
 
-      - name: List downloaded files (debug)
-        run: |
-          echo "Contents of dist-folder:"
-          ls -la dist-folder/ || echo "dist-folder not found"
-          echo "Contents of dist-folder/dist (if exists):"
-          ls -la dist-folder/dist/ || echo "dist-folder/dist not found"
-
-      - name: Copy Files to Server via SSH
+      - name: Copy to Server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
-          # مسیر source: چون path در upload-artifact برابر dist/ است
-          # پس در dist-folder ساختار dist/ خواهد بود
-          source: "dist-folder/dist"
-          # این مسیر باید با root در panel.conf و volume در docker-compose.yml مطابقت داشته باشد
-          # مسیر در panel.conf: root /var/www/panel-project;
-          # مسیر در docker-compose.yml: - /var/www/panel-project:/var/www/panel-project:ro
+          source: "final-build/*"
+          # این آدرس دقیقاً مطابق با Docker Compose شماست:
           target: "/var/www/panel-project"
-          # strip_components: 1 چون می‌خواهیم dist را حذف کنیم
           strip_components: 1
 
-      - name: Reload Nginx
+      - name: Restart Nginx
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           script: |
-            # TODO: نام کانتینر nginx را بررسی کنید
-            # بر اساس docker-compose.yml، نام کانتینر moramor-nginx است
-            # اگر نام متفاوت است، آن را تغییر دهید
-            docker exec moramor-nginx nginx -t && docker exec moramor-nginx nginx -s reload || echo "Nginx reload failed or not needed"
+            # نام کانتینر طبق فایل شما moramor-nginx است
+            docker exec moramor-nginx nginx -s reload
