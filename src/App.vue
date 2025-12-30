@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="min-h-screen bg-gray-50">
+  <div id="app" class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Login Page (No Layout) -->
     <RouterView v-if="route.name === 'login'" />
 
@@ -8,22 +8,22 @@
       <!-- Sidebar -->
       <aside
         :class="sidebarOpen ? 'translate-x-[10px]' : '-translate-x-full'"
-        class="fixed inset-y-0 right-0 z-50 w-64 text-black bg-gradient-to-b from-white via-white to-gray-50/50 shadow-2xl transform transition-transform translate-x-100 duration-300 ease-in-out lg:translate-x-0 lg:static border-l border-gray-200/50"
+        class="fixed inset-y-0 right-0 z-50 w-64 text-black dark:text-gray-100 bg-gradient-to-b from-white via-white to-gray-50/50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900/50 shadow-2xl transform transition-transform translate-x-100 duration-300 ease-in-out lg:translate-x-0 lg:static border-l border-gray-200/50 dark:border-gray-700/50"
       >
         <div class="flex flex-col h-full backdrop-blur-sm">
           <!-- Logo -->
-          <div class="flex items-center justify-between p-6 border-b border-gray-200/60 bg-gradient-to-r from-primary-50/50 to-transparent">
+          <div class="flex items-center justify-between p-6 border-b border-gray-200/60 dark:border-gray-700/60 bg-gradient-to-r from-primary-50/50 dark:from-primary-900/30 to-transparent">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
-                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-600 dark:to-primary-800 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+                <svg class="w-6 h-6 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h1 class="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-black">پنل ادمین</h1>
+              <h1 class="text-xl font-bold text-primary-600 dark:text-primary-400">پنل ادمین</h1>
             </div>
             <button
               @click="sidebarOpen = false"
-              class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -38,8 +38,8 @@
                 <router-link
                   to="/"
                   :class="route.name === 'dashboard'
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -53,8 +53,8 @@
                 <router-link
                   to="/products"
                   :class="route.path.startsWith('/products')
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -68,8 +68,8 @@
                 <router-link
                   to="/categories"
                   :class="route.path.startsWith('/categories')
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -83,8 +83,8 @@
                 <router-link
                   to="/orders"
                   :class="route.path.startsWith('/orders')
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -98,8 +98,8 @@
                 <router-link
                   to="/users"
                   :class="route.path.startsWith('/users')
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -113,8 +113,8 @@
                 <router-link
                   to="/reviews"
                   :class="route.path.startsWith('/reviews')
-                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 text-blue-500 shadow-lg shadow-primary-500/30'
-                    : 'text-gray-700 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100'"
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
                   @click="sidebarOpen = false"
                 >
@@ -128,21 +128,21 @@
           </nav>
 
           <!-- User Section -->
-          <div class="p-4 border-t border-gray-200/60 bg-gradient-to-t from-gray-50/50 to-transparent">
-            <div class="flex items-center gap-3 mb-4 p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-gray-200/50 shadow-sm">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
-                <span class="text-black font-bold text-lg">
+          <div class="p-4 border-t border-gray-200/60 dark:border-gray-700/60 bg-gradient-to-t from-gray-50/50 dark:from-gray-800/50 to-transparent">
+            <div class="flex items-center gap-3 mb-4 p-3 rounded-xl bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 dark:from-primary-500 dark:to-primary-700 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+                <span class="text-black dark:text-white font-bold text-lg">
                   {{ authStore.userName?.charAt(0)?.toUpperCase() || 'A' }}
                 </span>
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm font-semibold text-gray-900 truncate">{{ authStore.userName }}</p>
-                <p class="text-xs text-gray-500 truncate">{{ authStore.userEmail }}</p>
+                <p class="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{{ authStore.userName }}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ authStore.userEmail }}</p>
               </div>
             </div>
             <button
               @click="handleLogout"
-              class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-50 to-red-100 text-red-600 rounded-xl hover:from-red-100 hover:to-red-200 transition-all duration-200 font-medium shadow-sm hover:shadow-md border border-red-200/50"
+              class="w-full flex items-center cursor-pointer justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-50 to-red-100 text-red-600 rounded-xl hover:from-red-100 hover:to-red-200 transition-all duration-200 font-medium shadow-sm hover:shadow-md border border-red-200/50"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -156,19 +156,32 @@
       <!-- Main Content -->
       <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Header -->
-        <header class="bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 sticky top-0 z-30">
+        <header class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-30">
           <div class="flex items-center justify-between px-6 py-4">
             <button
               @click="sidebarOpen = !sidebarOpen"
-              class="lg:hidden p-2 rounded-xl text-black hover:bg-gray-100 transition-colors"
+              class="lg:hidden p-2 rounded-xl text-black dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
             <div class="flex items-center gap-3">
-              <div class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200/50">
-                <div class="text-[12px] lg:text-[15px] font-medium text-gray-700">
+              <!-- Dark Mode Toggle -->
+              <button
+                @click="themeStore.toggleDarkMode()"
+                class="p-2 rounded-xl text-gray-700 cursor-pointer dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                :title="themeStore.isDarkMode ? 'روشن کردن' : 'تاریک کردن'"
+              >
+                <svg v-if="themeStore.isDarkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              </button>
+              <div class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/50 dark:to-primary-800/50 rounded-xl border border-primary-200/50 dark:border-primary-700/50">
+                <div class="text-[12px] lg:text-[15px] font-medium text-gray-700 dark:text-gray-300">
                   {{ new Date().toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
                 </div>
               </div>
@@ -193,16 +206,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useThemeStore } from '@/stores/theme'
 
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
+const themeStore = useThemeStore()
 
 // State
 const sidebarOpen = ref(false)
+
+// Watch for theme changes and apply immediately
+watch(() => themeStore.isDarkMode, () => {
+  themeStore.applyTheme()
+}, { immediate: true })
 
 /**
  * Handle logout

@@ -9,7 +9,7 @@
       @wheel.stop
     >
       <div
-        class="bg-[#ffffff] rounded-3xl shadow-md  overflow-x-hidden w-full mx-4 max-h-[750px]"
+        class="bg-[#ffffff] dark:bg-gray-800 rounded-3xl shadow-md  overflow-x-hidden w-full mx-4 max-h-[750px]"
         :class="[
           size === 'sm' ? 'max-w-sm' :
           size === 'md' ? 'max-w-md' :
@@ -25,7 +25,7 @@
         <slot name="icon"/>
         <div v-if="$slots.header || title" class="px-6 pt-4">
           <slot name="header">
-            <h3 class="text-[20px] leading-[34px] text-font-dark font-ExtraBold">{{ title }}</h3>
+            <h3 class="text-[20px] leading-[34px] text-font-dark dark:text-gray-100 font-ExtraBold">{{ title }}</h3>
           </slot>
         </div>
 
@@ -38,7 +38,7 @@
           <slot name="body-top" />
 
           <div v-if="showInput" class="space-y-4">
-            <label v-if="inputLabel" :for="inputId" class="block text-sm font-medium text-gray-700">
+            <label v-if="inputLabel" :for="inputId" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
               {{ inputLabel }}
             </label>
 
@@ -54,14 +54,14 @@
                   :maxlength="maxLength"
                   :disabled="disabled"
                   :class="[
-                    'w-full px-4 bg-gray-100 py-2 border rounded-full shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-                    showError ? 'border-red-500' : 'border-gray-300',
+                    'w-full px-4 bg-gray-100 dark:bg-gray-700 dark:text-gray-100 py-2 border rounded-full shadow-sm focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400',
+                    showError ? 'border-red-500 dark:border-red-600' : 'border-gray-300 dark:border-gray-600',
 
                   ]"
                   @input="handleInput"
                 />
                 <!-- Error message  -->
-                <div v-if="showError && errorMessage" class="text-red-500 text-[12px] text-right  px-2">
+                <div v-if="showError && errorMessage" class="text-red-500 dark:text-red-400 text-[12px] text-right  px-2">
                   {{ errorMessage }}
                 </div>
                </div>

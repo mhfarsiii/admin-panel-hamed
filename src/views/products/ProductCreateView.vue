@@ -1,8 +1,8 @@
 <template>
   <div class="product-create-view">
     <div class="mb-6">
-      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">ایجاد محصول جدید</h1>
-      <p class="text-gray-600 mt-1">فرم زیر را تکمیل کنید تا محصول جدیدی ایجاد شود</p>
+      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900 dark:text-gray-100">ایجاد محصول جدید</h1>
+      <p class="text-gray-600 dark:text-gray-400 mt-1">فرم زیر را تکمیل کنید تا محصول جدیدی ایجاد شود</p>
     </div>
 
     <ProductForm submit-label="ایجاد محصول" @submit="handleSubmit" />
@@ -10,7 +10,7 @@
     <!-- Error Message -->
     <div
       v-if="productsStore.error"
-      class="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"
+      class="mt-4 p-4 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 rounded-lg"
     >
       {{ productsStore.error }}
     </div>

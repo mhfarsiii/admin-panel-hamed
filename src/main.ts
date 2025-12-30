@@ -13,6 +13,7 @@ import ToastService from 'primevue/toastservice'
 
 import App from './App.vue'
 import router from './router'
+import { useThemeStore } from './stores/theme'
 
 // Create Vue app instance
 const app = createApp(App)
@@ -30,6 +31,10 @@ app.use(PrimeVue, {
 })
 app.use(ToastPlugin)
 app.use(ToastService)
+
+// Initialize theme (use store with explicit pinia instance)
+const themeStore = useThemeStore(pinia)
+themeStore.initTheme()
 
 // Mount app
 app.mount('#app')

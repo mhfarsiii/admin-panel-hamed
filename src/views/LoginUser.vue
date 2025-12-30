@@ -1,46 +1,46 @@
 <template>
-  <div class="login-view min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 p-[1.5rem]">
+  <div class="login-view min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-700 dark:to-primary-900 p-[1.5rem]">
     <div class="w-full max-w-md">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-black mb-2">Moramor Panel</h1>
-        <p class="text-primary-100">مُرامُر</p>
+        <h1 class="text-4xl font-bold text-white dark:text-gray-100 mb-2">Moramor Panel</h1>
+        <p class="text-primary-100 dark:text-primary-200">مُرامُر</p>
       </div>
 
       <!-- Login Form -->
-      <div class="bg-white rounded-2xl shadow-2xl p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">ورود به پنل</h2>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">ورود به پنل</h2>
 
         <form @submit.prevent="handleLogin" class="space-y-6">
           <!-- Email -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">ایمیل</label>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ایمیل</label>
             <input
               v-model="form.email"
               type="email"
               required
               autocomplete="email"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all"
               placeholder="admin@example.com"
             />
           </div>
 
           <!-- Password -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">رمز عبور</label>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">رمز عبور</label>
             <div class="relative">
               <input
                 v-model="form.password"
                 :type="showPassword ? 'text' : 'password'"
                 required
                 autocomplete="current-password"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent transition-all"
                 placeholder="رمز عبور خود را وارد کنید"
               />
               <button
                 type="button"
                 @click="showPassword = !showPassword"
-                class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               >
                 <svg v-if="showPassword" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -54,15 +54,15 @@
           </div>
 
           <!-- Error Message -->
-          <div v-if="authStore.error" class="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p class="text-sm text-red-600">{{ authStore.error }}</p>
+          <div v-if="authStore.error" class="p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg">
+            <p class="text-sm text-red-600 dark:text-red-400">{{ authStore.error }}</p>
           </div>
 
           <!-- Submit Button -->
           <button
             type="submit"
             :disabled="authStore.isLoading"
-            class="w-full px-6 py-3 bg-primary-600 text-black cursor-pointer border rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            class="w-full px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white dark:text-gray-100 cursor-pointer border border-primary-600 dark:border-primary-700 rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             <span v-if="authStore.isLoading" class="flex items-center justify-center gap-2">
               <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -76,8 +76,8 @@
         </form>
 
         <!-- Info -->
-        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p class="text-xs text-blue-700">
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg">
+          <p class="text-xs text-blue-700 dark:text-blue-300">
             <strong>نکته:</strong> فقط کاربران با نقش ADMIN یا SUPER_ADMIN می‌توانند وارد پنل شوند.
           </p>
         </div>
@@ -85,7 +85,7 @@
 
       <!-- Footer -->
       <div class="text-center mt-8">
-        <p class="text-black text-sm">
+        <p class="text-white dark:text-gray-200 text-sm">
           © 2024 مُرامُر. تمامی حقوق محفوظ است.
         </p>
       </div>

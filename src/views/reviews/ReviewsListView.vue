@@ -1,35 +1,35 @@
 <template>
-  <div class="reviews-list-view">
+  <div class="reviews-list-view text-black dark:text-gray-100">
     <div class="mb-6">
-      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">مدیریت نظرات</h1>
-      <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px]">
+      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900 dark:text-gray-100">مدیریت نظرات</h1>
+      <p class="text-gray-600 dark:text-gray-400 mt-1 text-[12px] lg:text-[15px]">
         {{ reviewsStore.totalReviews }} نظر
-        <span v-if="reviewsStore.pendingReviewsCount > 0" class="text-yellow-600">
+        <span v-if="reviewsStore.pendingReviewsCount > 0" class="text-yellow-600 dark:text-yellow-400">
           ({{ reviewsStore.pendingReviewsCount }} در انتظار تایید)
         </span>
       </p>
     </div>
 
     <!-- Filters -->
-    <div class="bg-white rounded-lg shadow p-4 mb-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mb-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-4">
         <button
           @click="setFilter(undefined)"
-          :class="filters.approved === undefined ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'"
+          :class="filters.approved === undefined ? 'bg-black dark:bg-gray-700 text-white dark:text-gray-100' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
           class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           همه نظرات
         </button>
         <button
           @click="setFilter(false)"
-          :class="filters.approved === false ? 'bg-yellow-600 text-white' : 'bg-gray-200 text-gray-700'"
+          :class="filters.approved === false ? 'bg-yellow-600 dark:bg-yellow-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
           class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           در انتظار تایید
         </button>
         <button
           @click="setFilter(true)"
-          :class="filters.approved === true ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'"
+          :class="filters.approved === true ? 'bg-green-600 dark:bg-green-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'"
           class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           تایید شده
@@ -38,9 +38,9 @@
     </div>
 
     <!-- Loading State -->
-    <div v-if="reviewsStore.isLoading && reviews.length === 0" class="bg-white rounded-lg shadow p-8">
+    <div v-if="reviewsStore.isLoading && reviews.length === 0" class="bg-white dark:bg-gray-800 rounded-lg shadow p-8">
       <div class="animate-pulse space-y-4">
-        <div v-for="i in 5" :key="i" class="h-24 bg-gray-200 rounded"></div>
+        <div v-for="i in 5" :key="i" class="h-24 bg-gray-200 dark:bg-gray-700 rounded"></div>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
       <div
         v-for="review in reviews"
         :key="review.id"
-        class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow"
       >
         <div class="p-[1.5rem]">
           <div class="flex items-start justify-between mb-4">
@@ -57,24 +57,24 @@
               <div class="flex items-center gap-3 mb-2">
                 <router-link
                   :to="`/products/${review.product.id}/edit`"
-                  class="font-medium text-gray-900 hover:text-primary-600"
+                  class="font-medium text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400"
                 >
                   {{ review.product.name }}
                 </router-link>
                 <span
-                  :class="review.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
+                  :class="review.approved ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300'"
                   class="px-2 py-1 text-xs font-medium rounded-full"
                 >
                   {{ review.approved ? 'تایید شده' : 'در انتظار' }}
                 </span>
               </div>
-              <p class="text-sm text-gray-600">{{ review.user.name }} · {{ formatDate(review.createdAt) }}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{{ review.user.name }} · {{ formatDate(review.createdAt) }}</p>
             </div>
             <div class="flex items-center gap-1">
               <svg
                 v-for="i in 5"
                 :key="i"
-                :class="i <= review.rating ? 'text-yellow-400' : 'text-gray-300'"
+                :class="i <= review.rating ? 'text-yellow-400 dark:text-yellow-500' : 'text-gray-300 dark:text-gray-600'"
                 class="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -84,21 +84,21 @@
             </div>
           </div>
 
-          <p class="text-gray-700 mb-4">{{ review.comment }}</p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">{{ review.comment }}</p>
 
-          <div class="flex items-center justify-end gap-2 pt-4 border-t border-gray-200">
+          <div class="flex items-center justify-end gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
             <button
               v-if="!review.approved"
               @click="approveReview(review.id)"
               :disabled="reviewsStore.isLoading"
-              class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+              class="px-4 py-2 bg-green-600 dark:bg-green-700 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors disabled:opacity-50"
             >
               تایید نظر
             </button>
             <button
               @click="deleteReview(review)"
               :disabled="reviewsStore.isLoading"
-              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+              class="px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition-colors disabled:opacity-50"
             >
               حذف نظر
             </button>
@@ -107,8 +107,8 @@
       </div>
 
       <!-- Pagination -->
-      <div v-if="meta" class="bg-white rounded-lg shadow px-6 py-4 flex items-center justify-between">
-        <div class="text-sm text-gray-700">
+      <div v-if="meta" class="bg-white dark:bg-gray-800 rounded-lg shadow px-6 py-4 flex items-center justify-between">
+        <div class="text-sm text-gray-700 dark:text-gray-300">
           نمایش {{ (meta.page - 1) * meta.limit + 1 }} تا {{ Math.min(meta.page * meta.limit, meta.total) }} از {{ meta.total }}
         </div>
         <div class="flex gap-2">
@@ -116,7 +116,7 @@
             @click="previousPage"
             :disabled="meta.page === 1"
             :class="meta.page === 1 ? 'opacity-50 cursor-not-allowed' : ''"
-            class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50"
+            class="px-3 py-1 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             قبلی
           </button>
@@ -124,7 +124,7 @@
             @click="nextPage"
             :disabled="meta.page === meta.totalPages"
             :class="meta.page === meta.totalPages ? 'opacity-50 cursor-not-allowed' : ''"
-            class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50"
+            class="px-3 py-1 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             بعدی
           </button>
@@ -133,34 +133,34 @@
     </div>
 
     <!-- Empty State -->
-    <div v-else class="bg-white rounded-lg shadow p-12 text-center">
-      <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div v-else class="bg-white dark:bg-gray-800 rounded-lg shadow p-12 text-center">
+      <svg class="w-16 h-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
       </svg>
-      <p class="text-gray-600 text-lg">نظری یافت نشد</p>
+      <p class="text-gray-600 dark:text-gray-400 text-lg">نظری یافت نشد</p>
     </div>
 
     <!-- Delete Confirmation Modal -->
     <BaseModal :modelValue="showDeleteModal" v-if="showDeleteModal" @close="showDeleteModal = false">
       <template #header>
-        <h3 class="text-lg font-semibold text-gray-900">حذف نظر</h3>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">حذف نظر</h3>
       </template>
       <template #body>
-        <p class="text-gray-600">آیا از حذف این نظر اطمینان دارید؟</p>
-        <p class="text-sm text-red-600 mt-2">این عملیات قابل بازگشت نیست.</p>
+        <p class="text-gray-600 dark:text-gray-400">آیا از حذف این نظر اطمینان دارید؟</p>
+        <p class="text-sm text-red-600 dark:text-red-400 mt-2">این عملیات قابل بازگشت نیست.</p>
       </template>
       <template #footer>
         <div class="flex justify-end gap-3">
           <button
             @click="showDeleteModal = false"
-            class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            class="px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           >
             انصراف
           </button>
           <button
             @click="confirmDelete"
             :disabled="reviewsStore.isLoading"
-            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+            class="px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition-colors disabled:opacity-50"
           >
             {{ reviewsStore.isLoading ? 'در حال حذف...' : 'حذف' }}
           </button>

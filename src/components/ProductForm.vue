@@ -1,46 +1,46 @@
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-6">
     <!-- Basic Information -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">اطلاعات پایه</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">اطلاعات پایه</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             نام محصول <span class="text-red-500">*</span>
           </label>
           <input
             v-model="form.name"
             type="text"
             required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
 
         <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             شناسه URL (Slug) <span class="text-red-500">*</span>
           </label>
           <input
             v-model="form.slug"
             type="text"
             required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
-          <p class="text-xs text-gray-500 mt-1">فقط از حروف انگلیسی، اعداد و خط فاصله استفاده کنید</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">فقط از حروف انگلیسی، اعداد و خط فاصله استفاده کنید</p>
         </div>
 
         <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-gray-700 mb-2">توضیحات</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">توضیحات</label>
           <textarea
             v-model="form.description"
             rows="4"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           ></textarea>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             قیمت (ریال) <span class="text-red-500">*</span>
           </label>
           <input
@@ -48,29 +48,29 @@
             type="number"
             required
             min="0"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">تخفیف (%)</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">تخفیف (%)</label>
           <input
             v-model.number="form.discount"
             type="number"
             min="0"
             max="100"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             دسته‌بندی <span class="text-red-500">*</span>
           </label>
           <select
             v-model="form.categoryId"
             required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           >
             <option value="">انتخاب دسته‌بندی</option>
             <option v-for="category in categories" :key="category.id" :value="category.id">
@@ -80,7 +80,7 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             موجودی <span class="text-red-500">*</span>
           </label>
           <input
@@ -88,47 +88,47 @@
             type="number"
             required
             min="0"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">کد محصول (SKU)</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">کد محصول (SKU)</label>
           <input
             v-model="form.sku"
             type="text"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">وزن (گرم)</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">وزن (گرم)</label>
           <input
             v-model.number="form.weight"
             type="number"
             min="0"
             step="0.1"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
       </div>
     </div>
 
     <!-- Materials -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">مواد اولیه</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">مواد اولیه</h2>
 
       <div class="space-y-2">
         <div v-for="(material, index) in form.materials || []" :key="index" class="flex gap-2">
           <input
             v-model="form.materials![index]"
             type="text"
-            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
           <button
             type="button"
             @click="removeMaterial(index)"
-            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            class="px-4 py-2 bg-red-600 dark:bg-red-700 text-white rounded-lg hover:bg-red-700 dark:hover:bg-red-800 transition-colors"
           >
             حذف
           </button>
@@ -136,7 +136,7 @@
         <button
           type="button"
           @click="addMaterial"
-          class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+          class="px-4 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors"
         >
           + افزودن ماده اولیه
         </button>
@@ -144,8 +144,8 @@
     </div>
 
     <!-- Images -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">تصاویر محصول</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">تصاویر محصول</h2>
 
       <div class="mb-4">
         <input
@@ -160,7 +160,7 @@
           type="button"
           @click="imageInput?.click()"
           :disabled="isUploading"
-          class="px-4 py-2 bg-primary-600 text-white bg-black cursor-pointer rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+          class="px-4 py-2 bg-primary-600 dark:bg-primary-700 text-white cursor-pointer rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
         >
           {{ isUploading ? 'در حال آپلود...' : '+ آپلود تصاویر' }}
         </button>
@@ -183,83 +183,83 @@
     </div>
 
     <!-- Dimensions -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">ابعاد (سانتی‌متر)</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">ابعاد (سانتی‌متر)</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">طول</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">طول</label>
           <input
             v-model.number="form.dimensions!.length"
             type="number"
             min="0"
             step="0.1"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">عرض</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">عرض</label>
           <input
             v-model.number="form.dimensions!.width"
             type="number"
             min="0"
             step="0.1"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">ارتفاع</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ارتفاع</label>
           <input
             v-model.number="form.dimensions!.height"
             type="number"
             min="0"
             step="0.1"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
         </div>
       </div>
     </div>
 
     <!-- SEO -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">تنظیمات SEO</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">تنظیمات SEO</h2>
 
       <div class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">عنوان متا</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">عنوان متا</label>
           <input
             v-model="form.metaTitle"
             type="text"
             maxlength="60"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           />
-          <p class="text-xs text-gray-500 mt-1">{{ form.metaTitle?.length || 0 }}/60 کاراکتر</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ form.metaTitle?.length || 0 }}/60 کاراکتر</p>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">توضیحات متا</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">توضیحات متا</label>
           <textarea
             v-model="form.metaDescription"
             rows="3"
             maxlength="160"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
           ></textarea>
-          <p class="text-xs text-gray-500 mt-1">{{ form.metaDescription?.length || 0 }}/160 کاراکتر</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ form.metaDescription?.length || 0 }}/160 کاراکتر</p>
         </div>
       </div>
     </div>
 
     <!-- Status -->
-    <div class="bg-white rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 mb-4">وضعیت</h2>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">وضعیت</h2>
 
       <div class="space-y-4">
         <label class="flex items-center gap-2">
-          <input v-model="form.isActive" type="checkbox" class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500" />
-          <span class="text-sm text-gray-700">محصول فعال است</span>
+          <input v-model="form.isActive" type="checkbox" class="w-4 h-4 text-primary-600 dark:text-primary-400 border-gray-300 dark:border-gray-600 rounded focus:ring-primary-500 dark:focus:ring-primary-400" />
+          <span class="text-sm text-gray-700 dark:text-gray-300">محصول فعال است</span>
         </label>
         <label class="flex items-center gap-2">
-          <input v-model="form.isFeatured" type="checkbox" class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500" />
-          <span class="text-sm text-gray-700">محصول ویژه است</span>
+          <input v-model="form.isFeatured" type="checkbox" class="w-4 h-4 text-primary-600 dark:text-primary-400 border-gray-300 dark:border-gray-600 rounded focus:ring-primary-500 dark:focus:ring-primary-400" />
+          <span class="text-sm text-gray-700 dark:text-gray-300">محصول ویژه است</span>
         </label>
       </div>
     </div>
@@ -268,14 +268,14 @@
     <div class="flex items-center justify-end gap-4">
       <router-link
         to="/products"
-        class="px-6 py-3 border text-black border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        class="px-6 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-black dark:text-gray-100 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
       >
         انصراف
       </router-link>
       <button
         type="submit"
         :disabled="isSubmitting"
-        class="px-6 py-3 bg-primary-600 text-white bg-blue-500 rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+        class="px-6 py-3 bg-primary-600 dark:bg-primary-700 cursor-pointer text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
       >
         {{ isSubmitting ? 'در حال ذخیره...' : submitLabel }}
       </button>
