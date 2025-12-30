@@ -1,7 +1,7 @@
 <template>
   <div class="product-create-view">
     <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-900">ایجاد محصول جدید</h1>
+      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">ایجاد محصول جدید</h1>
       <p class="text-gray-600 mt-1">فرم زیر را تکمیل کنید تا محصول جدیدی ایجاد شود</p>
     </div>
 

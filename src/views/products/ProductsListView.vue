@@ -1,7 +1,7 @@
 <template>
   <div class="products-list-view text-black animate-fade-in">
     <!-- Header -->
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4 lg:gap-0">
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/30">
           <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -9,8 +9,8 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">مدیریت محصولات</h1>
-          <p class="text-gray-600 mt-1 flex items-center gap-2">
+          <h1 class="text-[14px] lg:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">مدیریت محصولات</h1>
+          <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px] flex items-center gap-2">
             <span class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
             {{ productsStore.totalProducts }} محصول
           </p>
@@ -18,7 +18,7 @@
       </div>
       <router-link
         to="/products/create"
-        class="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-black rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 flex items-center gap-2 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
+        class="px-6 py-3 text-[12px] lg:text-[15px] whitespace-nowrap bg-gradient-to-r from-primary-600 to-primary-700 text-white bg-blue-500 rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 flex items-center gap-2 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -44,7 +44,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">دسته‌بندی</label>
           <select
             v-model="filters.category"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            class="w-full px-4 py-3 border text-[12px] lg:text-[15px] border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
             @change="fetchProducts"
           >
             <option value="">همه دسته‌بندی‌ها</option>
@@ -57,7 +57,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">مرتب‌سازی</label>
           <select
             v-model="filters.sort"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            class="w-full px-4 py-3 border border-gray-300 text-[12px] lg:text-[15px] rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
             @change="fetchProducts"
           >
             <option value="">مرتب‌سازی</option>
@@ -72,7 +72,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">نوع محصول</label>
           <select
             v-model="filters.featured"
-            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            class="w-full px-4 py-3 border border-gray-300 text-[12px] lg:text-[15px] rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
             @change="fetchProducts"
           >
             <option value="">همه محصولات</option>
@@ -240,7 +240,7 @@
       <p class="text-gray-500 text-sm mb-6">شروع کنید و اولین محصول خود را اضافه کنید</p>
       <router-link
         to="/products/create"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-black rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -401,4 +401,11 @@ onMounted(async () => {
   @apply p-[1.5rem];
 }
 </style> -->
+
+<style scoped>
+
+  input::placeholder{
+    font-size: 13px;
+  }
+</style>
 

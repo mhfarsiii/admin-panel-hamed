@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-view animate-fade-in">
+  <div class="dashboard-view animate-fade-in py-3">
     <div class="mb-8">
       <div class="flex items-center gap-4 mb-2">
         <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/30">
@@ -8,10 +8,10 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2">داشبورد</h1>
+          <h1 class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2">داشبورد</h1>
           <p class="text-gray-600 flex items-center gap-2">
-            <span class="text-primary-600 font-medium">خوش آمدید،</span>
-            <span class="font-semibold">{{ authStore.userName }}</span>
+            <span class="text-primary-600 font-medium text-[12px] lg:text-[16px]">خوش آمدید،</span>
+            <span class="font-semibold text-[12px] lg:text-[16px]">{{ authStore.userName }}</span>
           </p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="users-list-view text-black">
     <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-900">مدیریت کاربران</h1>
-      <p class="text-gray-600 mt-1">{{ usersStore.totalUsers }} کاربر</p>
+      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">مدیریت کاربران</h1>
+      <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px]">{{ usersStore.totalUsers }} کاربر</p>
     </div>
 
     <!-- Loading State -->

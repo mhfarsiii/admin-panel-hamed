@@ -160,7 +160,7 @@
           <div class="flex items-center justify-between px-6 py-4">
             <button
               @click="sidebarOpen = !sidebarOpen"
-              class="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
+              class="lg:hidden p-2 rounded-xl text-black hover:bg-gray-100 transition-colors"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -168,7 +168,7 @@
             </button>
             <div class="flex items-center gap-3">
               <div class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200/50">
-                <div class="text-sm font-medium text-gray-700">
+                <div class="text-[12px] lg:text-[15px] font-medium text-gray-700">
                   {{ new Date().toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
                 </div>
               </div>
@@ -177,7 +177,7 @@
         </header>
 
         <!-- Page Content -->
-        <main class="flex-1 overflow-y-auto p-10">
+        <main class="flex-1 overflow-y-auto p-4 lg:p-10  ">
           <RouterView />
         </main>
       </div>

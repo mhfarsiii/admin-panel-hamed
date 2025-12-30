@@ -8,8 +8,8 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">مدیریت سفارشات</h1>
-          <p class="text-gray-600 mt-1 flex items-center gap-2">
+          <h1 class="text-[14px] lg:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">مدیریت سفارشات</h1>
+          <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px] flex items-center gap-2">
             <span class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
             {{ ordersStore.totalOrders }} سفارش
           </p>
@@ -24,7 +24,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">وضعیت سفارش</label>
           <select
             v-model="filters.status"
-            class="w-full px-4 py-3 border border-gray-300 text-black rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            class="w-full px-4 py-3 border border-gray-300 text-[12px] lg:text-[15px] text-black rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
             @change="fetchOrders"
           >
             <option value="" selected>همه وضعیت‌ها</option>
@@ -41,7 +41,7 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">وضعیت پرداخت</label>
           <select
             v-model="filters.paymentStatus"
-            class="w-full px-4 py-3 border border-gray-300 text-black rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
+            class="w-full px-4 py-3 border border-gray-300 text-[12px] lg:text-[15px] text-black rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all shadow-sm hover:shadow-md"
             @change="fetchOrders"
           >
             <option value="" selected>همه وضعیت‌های پرداخت</option>

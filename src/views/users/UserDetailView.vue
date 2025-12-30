@@ -10,12 +10,12 @@
       <!-- Header -->
       <div class="flex items-center justify-between mb-6">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">{{ user.name }}</h1>
-          <p class="text-gray-600 mt-1">{{ user.email }}</p>
+          <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">{{ user.name }}</h1>
+          <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px]">{{ user.email }}</p>
         </div>
         <router-link
           to="/users"
-          class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          class="px-4 py-2 text-[12px] lg:text-[15px] border text-black border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
         >
           بازگشت به لیست
         </router-link>
@@ -30,15 +30,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <p class="text-sm text-gray-600">نام کامل</p>
-                <p class="font-medium text-gray-900">{{ user.name }}</p>
+                <p class="font-medium text-gray-900 text-[12px] lg:text-[15px]">{{ user.name }}</p>
               </div>
               <div>
                 <p class="text-sm text-gray-600">ایمیل</p>
-                <p class="font-medium text-gray-900">{{ user.email }}</p>
+                <p class="font-medium text-gray-900 text-[12px] lg:text-[15px]">{{ user.email }}</p>
               </div>
               <div>
                 <p class="text-sm text-gray-600">شماره تماس</p>
-                <p class="font-medium text-gray-900">{{ user.phone || '-' }}</p>
+                <p class="font-medium text-gray-900 text-[12px] lg:text-[15px]">{{ user.phone || '-' }}</p>
               </div>
               <div>
                 <p class="text-sm text-gray-600">نقش</p>
@@ -60,7 +60,7 @@
               </div>
               <div>
                 <p class="text-sm text-gray-600">تاریخ عضویت</p>
-                <p class="font-medium text-gray-900">{{ formatDate(user.createdAt) }}</p>
+                <p class="font-medium text-gray-900 text-[12px] lg:text-[15px]">{{ formatDate(user.createdAt) }}</p>
               </div>
             </div>
           </div>
@@ -79,17 +79,17 @@
                 <div>
                   <router-link
                     :to="`/orders/${order.id}`"
-                    class="font-medium text-primary-600 hover:text-primary-900"
+                    class="font-medium text-primary-600 hover:text-primary-900 text-[12px] lg:text-[15px]"
                   >
                     {{ order.orderNumber }}
                   </router-link>
-                  <p class="text-sm text-gray-600 mt-1">
+                  <p class="text-sm text-gray-600 mt-1 text-[12px] lg:text-[15px]">
                     {{ formatPrice(order.total) }}
                   </p>
                 </div>
                 <span
                   :class="getStatusBadgeClass(order.status)"
-                  class="px-2 py-1 text-xs font-medium rounded-full"
+                  class="px-2 py-1 text-xs font-medium rounded-full text-[12px] lg:text-[15px]"
                 >
                   {{ getStatusLabel(order.status) }}
                 </span>
@@ -109,12 +109,12 @@
                 class="p-4"
               >
                 <div class="space-y-1 text-sm">
-                  <p><strong>گیرنده:</strong> {{ address.receiverName }}</p>
-                  <p><strong>شماره تماس:</strong> {{ address.receiverPhone }}</p>
-                  <p><strong>استان:</strong> {{ address.province }}</p>
-                  <p><strong>شهر:</strong> {{ address.city }}</p>
-                  <p><strong>آدرس:</strong> {{ address.address }}</p>
-                  <p><strong>کد پستی:</strong> {{ address.postalCode }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>گیرنده:</strong> {{ address.receiverName }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>شماره تماس:</strong> {{ address.receiverPhone }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>استان:</strong> {{ address.province }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>شهر:</strong> {{ address.city }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>آدرس:</strong> {{ address.address }}</p>
+                  <p class="text-[12px] lg:text-[15px]"><strong>کد پستی:</strong> {{ address.postalCode }}</p>
                 </div>
               </div>
             </div>
@@ -128,14 +128,14 @@
             <h2 class="text-lg font-semibold text-gray-900 mb-4">آمار کاربر</h2>
             <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-600">تعداد سفارشات</span>
-                <span class="font-bold text-lg text-gray-900">
+                <span class="  text-gray-600 text-[12px] lg:text-[15px]">تعداد سفارشات</span>
+                <span class="font-bold text-lg text-gray-900 text-[12px] lg:text-[15px]">
                   {{ user.orders?.length || 0 }}
                 </span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-600">تعداد آدرس‌ها</span>
-                <span class="font-bold text-lg text-gray-900">
+                <span class="  text-gray-600 text-[12px] lg:text-[15px]">تعداد آدرس‌ها</span>
+                <span class="font-bold text-lg text-gray-900 text-[12px] lg:text-[15px]">
                   {{ user.addresses?.length || 0 }}
                 </span>
               </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="reviews-list-view">
     <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-900">مدیریت نظرات</h1>
-      <p class="text-gray-600 mt-1">
+      <h1 class="text-[14px] lg:text-3xl font-bold text-gray-900">مدیریت نظرات</h1>
+      <p class="text-gray-600 mt-1 text-[12px] lg:text-[15px]">
         {{ reviewsStore.totalReviews }} نظر
         <span v-if="reviewsStore.pendingReviewsCount > 0" class="text-yellow-600">
           ({{ reviewsStore.pendingReviewsCount }} در انتظار تایید)
@@ -12,25 +12,25 @@
 
     <!-- Filters -->
     <div class="bg-white rounded-lg shadow p-4 mb-6">
-      <div class="flex items-center gap-4">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-4">
         <button
           @click="setFilter(undefined)"
           :class="filters.approved === undefined ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'"
-          class="px-4 py-2 rounded-lg transition-colors"
+          class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           همه نظرات
         </button>
         <button
           @click="setFilter(false)"
           :class="filters.approved === false ? 'bg-yellow-600 text-white' : 'bg-gray-200 text-gray-700'"
-          class="px-4 py-2 rounded-lg transition-colors"
+          class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           در انتظار تایید
         </button>
         <button
           @click="setFilter(true)"
           :class="filters.approved === true ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'"
-          class="px-4 py-2 rounded-lg transition-colors"
+          class="px-4 py-2 rounded-lg transition-colors text-[12px] lg:text-[15px] cursor-pointer w-full"
         >
           تایید شده
         </button>
