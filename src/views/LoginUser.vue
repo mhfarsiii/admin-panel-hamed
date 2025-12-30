@@ -3,8 +3,8 @@
     <div class="w-full max-w-md">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-white dark:text-gray-100 mb-2">Moramor Panel</h1>
-        <p class="text-primary-100 dark:text-primary-200">مُرامُر</p>
+        <h1 class="text-4xl font-bold text-black dark:text-gray-100 mb-2">Moramor Panel</h1>
+        <p class="text-black dark:text-primary-200">مُرامُر</p>
       </div>
 
       <!-- Login Form -->
@@ -62,7 +62,7 @@
           <button
             type="submit"
             :disabled="authStore.isLoading"
-            class="w-full px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white dark:text-gray-100 cursor-pointer border border-primary-600 dark:border-primary-700 rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            class="w-full px-6 py-3 bg-primary-600 dark:bg-primary-700 text-black dark:text-gray-100 cursor-pointer border border-primary-600 dark:border-primary-700 rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             <span v-if="authStore.isLoading" class="flex items-center justify-center gap-2">
               <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -85,7 +85,7 @@
 
       <!-- Footer -->
       <div class="text-center mt-8">
-        <p class="text-white dark:text-gray-200 text-sm">
+        <p class="text-black dark:text-gray-200 text-sm">
           © 2024 مُرامُر. تمامی حقوق محفوظ است.
         </p>
       </div>
