@@ -3,7 +3,7 @@
   <Transition name="modal-fade">
     <div
       v-if="modelValue"
-      class="fixed inset-0 backdrop-blur-[3px] bg-black bg-opacity-15  flex items-center justify-center z-[999]   transition-all duration-700"
+      class="fixed inset-0   bg-black/50   flex items-center justify-center z-[999]   transition-all duration-700"
       @click="handleOverlayClick"
       @touchmove.stop
       @wheel.stop
@@ -65,7 +65,7 @@
                   {{ errorMessage }}
                 </div>
                </div>
-               
+
               </form>
             </div>
           </div>

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "primeicons/primeicons.css";
+@import "./fonts.css";
 
 @layer base {
   :root {
@@ -21,7 +22,7 @@
 
   body {
     @apply bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20;
-    font-family: "Roboto", "Vazirmatn", sans-serif;
+    font-family: "IRANYekanX", "Roboto", "Vazirmatn", sans-serif;
     direction: rtl;
   }
 

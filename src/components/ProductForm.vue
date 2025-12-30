@@ -268,14 +268,14 @@
     <div class="flex items-center justify-end gap-4">
       <router-link
         to="/products"
-        class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        class="px-6 py-3 border text-black border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
       >
         انصراف
       </router-link>
       <button
         type="submit"
         :disabled="isSubmitting"
-        class="px-6 py-3 bg-primary-600 text-black bg-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
+        class="px-6 py-3 bg-primary-600 text-white bg-blue-500 rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50"
       >
         {{ isSubmitting ? 'در حال ذخیره...' : submitLabel }}
       </button>

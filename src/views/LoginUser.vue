@@ -3,7 +3,7 @@
     <div class="w-full max-w-md">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-white mb-2">پنل ادمین</h1>
+        <h1 class="text-4xl font-bold text-black mb-2">Moramor Panel</h1>
         <p class="text-primary-100">مُرامُر</p>
       </div>
 
@@ -85,7 +85,7 @@
 
       <!-- Footer -->
       <div class="text-center mt-8">
-        <p class="text-white text-sm">
+        <p class="text-black text-sm">
           © 2024 مُرامُر. تمامی حقوق محفوظ است.
         </p>
       </div>

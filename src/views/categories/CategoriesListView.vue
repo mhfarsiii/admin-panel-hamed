@@ -79,7 +79,7 @@
       <p class="text-gray-600 text-lg mb-4">دسته‌بندی موجود نیست</p>
       <button
         @click="showCreateModal = true"
-        class="inline-block px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+        class="inline-block px-6 py-3 bg-primary-600 text-black rounded-lg hover:bg-primary-700 transition-colors"
       >
         افزودن اولین دسته‌بندی
       </button>
