@@ -275,7 +275,7 @@
       <button
         type="submit"
         :disabled="isSubmitting"
-        class="px-6 py-3 bg-primary-600 dark:bg-primary-700 cursor-pointer text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
+        class="px-6 py-3 bg-blue-500 dark:bg-primary-700 cursor-pointer  text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
       >
         {{ isSubmitting ? 'در حال ذخیره...' : submitLabel }}
       </button>
