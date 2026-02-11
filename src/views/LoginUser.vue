@@ -86,7 +86,7 @@
       <!-- Footer -->
       <div class="text-center mt-8">
         <p class="text-black dark:text-gray-200 text-sm">
-          © 2024 مُرامُر. تمامی حقوق محفوظ است.
+          © 2026 مُرامُر. تمامی حقوق محفوظ است.
         </p>
       </div>
     </div>
