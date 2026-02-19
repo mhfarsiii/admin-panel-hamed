@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
           source: "final-build/*"
-          target: "/var/www/panel-project"
+          target: "/var/www/admin-panel"
           strip_components: 1
 
       - name: Restart Nginx
