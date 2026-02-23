@@ -180,7 +180,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>
               </button>
-              <div class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/50 dark:to-primary-800/50 rounded-xl border border-primary-200/50 dark:border-primary-700/50">
+              <div class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/50 dark:to-primary-800/50 rounded-xl border border-black dark:border-white">
                 <div class="text-[12px] lg:text-[15px] font-medium text-gray-700 dark:text-gray-300">
                   {{ new Date().toLocaleDateString('fa-IR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}
                 </div>

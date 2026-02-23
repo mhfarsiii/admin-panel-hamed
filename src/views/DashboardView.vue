@@ -173,7 +173,7 @@
         <div class="p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-r from-gray-50/50 dark:from-gray-700/50 to-transparent">
           <router-link
             to="/orders"
-            class="block text-center text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
+            class="block text-center text-sm text-black dark:text-white hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
           >
             مشاهده همه سفارشات →
           </router-link>
@@ -240,7 +240,7 @@
         <div class="p-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-r from-gray-50/50 dark:from-gray-700/50 to-transparent">
           <router-link
             to="/reviews"
-            class="block text-center text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
+            class="block text-center text-sm text-black dark:text-white hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
           >
             مشاهده همه نظرات →
           </router-link>

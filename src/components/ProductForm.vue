@@ -116,7 +116,7 @@
 
     <!-- Materials -->
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-[1.5rem]">
-      <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">مواد اولیه</h2>
+      <h2 class="text-lg font-semibold text-gray-900  dark:text-gray-100 mb-4">مواد اولیه</h2>
 
       <div class="space-y-2">
         <div v-for="(material, index) in form.materials || []" :key="index" class="flex gap-2">
@@ -160,7 +160,7 @@
           type="button"
           @click="imageInput?.click()"
           :disabled="isUploading"
-          class="px-4 py-2 bg-primary-600 dark:bg-primary-700 text-white cursor-pointer rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
+          class="px-4 py-2 bg-primary-600 dark:bg-primary-700 border border-black dark:border-white text-black dark:text-white cursor-pointer rounded-lg hover:bg-primary-700 dark:hover:bg-primary-800 transition-colors disabled:opacity-50"
         >
           {{ isUploading ? 'در حال آپلود...' : '+ آپلود تصاویر' }}
         </button>
