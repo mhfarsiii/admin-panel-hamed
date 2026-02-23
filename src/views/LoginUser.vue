@@ -2,7 +2,7 @@
   <div class="login-view min-h-screen flex flex-col md:flex-row bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans" dir="ltr">
 
     <!-- Left Section: Form -->
-    <div class="flex-1 flex items-center justify-center p-6 md:p-12 lg:p-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 z-10">
+    <div class="md:w-1/2 min-h-screen  flex items-center justify-center p-6 md:p-12 lg:p-16 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 z-10 overflow-hidden">
       <div class="w-full max-w-md space-y-8    rounded-3xl    px-6 py-8 md:px-8 md:py-10">
         <!-- Logo & Header -->
         <div class="text-left">
@@ -99,7 +99,7 @@
     </div>
 
     <!-- Right Section: Illustration/Graphic -->
-    <div class="hidden md:flex flex-1 relative overflow-hidden " :style="{backgroundImage:'url(/img/87nbv.jpg)',backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}">
+    <div class="hidden  md:flex flex-1  overflow-hidden " :style="{backgroundImage:'url(/img/87nbv.jpg)',backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}">
     </div>
   </div>
 </template>
@@ -139,46 +139,3 @@ const handleLogin = async () => {
 }
 </script>
 
-<style scoped>
-/* Smooth page entry animation */
-.login-view {
-  animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes pageEnter {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Floating animation for the illustration */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Error message fade transition */
-.fade-enter-active, .fade-leave-active {
-  transition: all 0.3s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* Custom scrollbar if needed */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-</style>
