@@ -208,6 +208,46 @@ export const useProductsStore = defineStore('products', {
     },
 
     /**
+     * Toggle best-seller status for a product
+     */
+    async toggleBestSeller(id: string, isBestSeller: boolean): Promise<Product | null> {
+      this.isLoading = true
+      this.error = null
+      this.success = null
+
+      try {
+        // This endpoint updates the best-seller flag on the server
+        const response = await apiClient.patch<Product>(`/products/${id}/best-seller`, {
+          isBestSeller,
+        })
+
+        const updatedProduct = response.data
+
+        // Update in products list
+        const index = this.products.findIndex((product) => product.id === id)
+        if (index !== -1) {
+          this.products[index] = updatedProduct
+        }
+
+        // Update current product if it's the one being updated
+        if (this.currentProduct?.id === id) {
+          this.currentProduct = updatedProduct
+        }
+
+        this.success = true
+        return updatedProduct
+      } catch (error: unknown) {
+        console.error('Toggle best-seller error:', error)
+        const err = error as { response?: { data?: { message?: string } } }
+        this.error = err.response?.data?.message || 'خطا در تغییر وضعیت پرفروش بودن محصول'
+        this.success = false
+        return null
+      } finally {
+        this.isLoading = false
+      }
+    },
+
+    /**
      * Delete product
      */
     async deleteProduct(id: string): Promise<boolean> {

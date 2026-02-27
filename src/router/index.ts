@@ -71,6 +71,37 @@ const routes: RouteRecordRaw[] = [
       requiresAdmin: true,
     },
   },
+  // Collections Routes
+  {
+    path: '/collections',
+    name: 'collections',
+    component: () => import('@/views/collections/CollectionsListView.vue'),
+    meta: {
+      title: 'مدیریت کالکشن‌ها',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/collections/create',
+    name: 'collections-create',
+    component: () => import('@/views/collections/CollectionCreateView.vue'),
+    meta: {
+      title: 'ایجاد کالکشن جدید',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/collections/:slug/edit',
+    name: 'collections-edit',
+    component: () => import('@/views/collections/CollectionEditView.vue'),
+    meta: {
+      title: 'ویرایش کالکشن',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
   // Orders Routes
   {
     path: '/orders',

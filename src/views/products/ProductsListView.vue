@@ -178,6 +178,12 @@
                   >
                     ⭐ ویژه
                   </span>
+                  <span
+                    v-if="product.isBestSeller"
+                    class="px-3 py-1 bg-gradient-to-r from-amber-100 to-amber-50 dark:from-amber-900/40 dark:to-amber-800/30 text-amber-800 dark:text-amber-300 text-xs font-semibold rounded-full inline-block w-fit border border-amber-200 dark:border-amber-700"
+                  >
+                    🔥 پرفروش
+                  </span>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -188,6 +194,12 @@
                   >
                     ویرایش
                   </router-link>
+                  <button
+                    @click="toggleBestSeller(product)"
+                    class="px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-all font-semibold text-xs"
+                  >
+                    {{ product.isBestSeller ? 'لغو پرفروش' : 'پرفروش کردن' }}
+                  </button>
                   <button
                     @click="deleteProduct(product)"
                     class="px-3 py-1.5 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/50 transition-all font-semibold text-xs"
@@ -385,6 +397,14 @@ const confirmDelete = async () => {
       productToDelete.value = null
     }
   }
+}
+
+/**
+ * Toggle best-seller status for a product
+ */
+const toggleBestSeller = async (product: Product) => {
+  const targetValue = !product.isBestSeller
+  await productsStore.toggleBestSeller(product.id, targetValue)
 }
 
 // Lifecycle

@@ -11,7 +11,6 @@ import type {
   LoginResponse,
   User,
 } from '@/types/types'
-import router from '@/router'
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
@@ -101,15 +100,24 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Logout user
+     * Logout user (invalidate refresh token on server and clear local auth)
      */
-    logout(): void {
-      this.clearAuth()
-
-
-      router.replace({
-        name: 'login'
-      })
+    async logout(): Promise<void> {
+      try {
+        // Call API to invalidate current refresh token (if available)
+        if (this.refreshToken) {
+          await apiClient.post('/auth/logout', {
+            refreshToken: this.refreshToken,
+          })
+        } else {
+          await apiClient.post('/auth/logout')
+        }
+      } catch (error) {
+        // Even if server logout fails, ensure local auth is cleared
+        console.error('Logout error:', error)
+      } finally {
+        this.clearAuth()
+      }
     },
 
     /**

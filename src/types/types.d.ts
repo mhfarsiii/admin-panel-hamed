@@ -203,6 +203,10 @@ export interface Product {
   weight?: number
   dimensions?: ProductDimensions
   isFeatured: boolean
+  /**
+   * Indicates if the product is marked as best-seller
+   */
+  isBestSeller?: boolean
   isActive: boolean
   metaTitle?: string
   metaDescription?: string
@@ -450,6 +454,73 @@ export interface ReviewsListQuery {
 }
 
 // ============================================
+// Collections API Types
+// ============================================
+
+/**
+ * Collection product (nested in collection)
+ */
+export interface CollectionProduct {
+  id: string
+  name: string
+  slug: string
+  price: number
+  images: string[]
+}
+
+/**
+ * Collection entity
+ */
+export interface Collection {
+  id: string
+  title: string
+  slug: string
+  description?: string
+  coverImage?: string
+  products: CollectionProduct[]
+  isActive: boolean
+  sortOrder: number
+  createdAt: string
+  updatedAt: string
+}
+
+/**
+ * Create collection request
+ * POST /admin/collections
+ */
+export interface CreateCollectionRequest {
+  title: string
+  description?: string
+  coverImage?: string
+  productIds: string[]
+}
+
+/**
+ * Update collection request
+ * PUT /admin/collections/:id
+ */
+export interface UpdateCollectionRequest {
+  title?: string
+  slug?: string
+  description?: string
+  coverImage?: string
+  productIds?: string[]
+  isActive?: boolean
+  sortOrder?: number
+}
+
+/**
+ * Collections list query parameters
+ * GET /admin/collections
+ */
+export interface CollectionsListQuery {
+  page?: number
+  limit?: number
+  q?: string
+  isActive?: boolean
+}
+
+// ============================================
 // File Upload API Types
 // ============================================
 
@@ -516,6 +587,14 @@ export interface OrdersState extends BaseStoreState {
   orders: Order[]
   currentOrder: Order | null
   meta: PaginationMeta | null
+}
+
+/**
+ * Collections store state
+ */
+export interface CollectionsState extends BaseStoreState {
+  collections: Collection[]
+  currentCollection: Collection | null
 }
 
 /**

@@ -66,6 +66,21 @@
               </li>
               <li>
                 <router-link
+                  to="/collections"
+                  :class="route.path.startsWith('/collections')
+                    ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-l hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-800'"
+                  class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium group"
+                  @click="sidebarOpen = false"
+                >
+                  <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18" />
+                  </svg>
+                  <span>کالکشن‌ها</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
                   to="/categories"
                   :class="route.path.startsWith('/categories')
                     ? 'bg-gradient-to-l from-primary-500 to-primary-600 dark:from-primary-600 dark:to-primary-700 text-blue-500 dark:text-blue-300 shadow-lg shadow-primary-500/30'
