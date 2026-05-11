@@ -123,7 +123,7 @@
         <button
           type="submit"
           :disabled="collectionsStore.isLoading"
-          class="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg hover:from-primary-700 hover:to-primary-800 transition-colors disabled:opacity-50 text-sm font-semibold"
+          class="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white bg-blue-500 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-colors disabled:opacity-50 text-sm font-semibold"
         >
           {{ collectionsStore.isLoading ? 'در حال ایجاد...' : 'ایجاد کالکشن' }}
         </button>

@@ -23,16 +23,15 @@
           </p>
         </div>
       </div>
-      <button
-        type="button"
-        @click="openCreateModal"
-        class="px-6 py-3 text-[12px] lg:text-[15px] whitespace-nowrap bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 flex items-center gap-2 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
+      <RouterLink
+      to="/collections/create"
+        class="px-6 py-3 text-[12px] lg:text-[15px] whitespace-nowrap bg-blue-500 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 flex items-center gap-2 font-semibold shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 hover:-translate-y-0.5"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
         <span>افزودن کالکشن جدید</span>
-      </button>
+      </RouterLink>
     </div>
 
     <!-- Filters -->
@@ -102,7 +101,7 @@
               <th class="px-6 py-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                 تعداد محصولات
               </th>
-  
+
             </tr>
           </thead>
           <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200/50 dark:divide-gray-700/50">
@@ -532,19 +531,6 @@ const productIdsInput = ref('')
 // Computed
 const collections = computed(() => collectionsStore.collections)
 
-const openCreateModal = () => {
-  collectionToEdit.value = null
-  form.value = {
-    title: '',
-    slug: '',
-    description: '',
-    coverImage: '',
-    isActive: true,
-    sortOrder: 0,
-  }
-  productIdsInput.value = ''
-  showCreateModal.value = true
-}
 
 /**
  * Fetch collections with filters
