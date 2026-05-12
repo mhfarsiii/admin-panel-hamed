@@ -1,6 +1,5 @@
 name: Panel Build and Deploy
 
-
 on:
   push:
     branches: [main, master]
@@ -18,17 +17,16 @@ jobs:
           cache: 'npm'
 
       - name: Install & Build
-        # اگر پوشه apps ندارید، مستقیم دستورات را اجرا می‌کنیم
         run: |
-          npm install
+          npm ci --prefer-offline    # کمی سریع‌تر و پایدارتر از npm install
           npx vite build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist-files
-          # خروجی Vite در ریشه پروژه پوشه dist است
           path: dist/
+          retention-days: 1
 
   deploy:
     needs: build
@@ -41,14 +39,19 @@ jobs:
           path: final-build
 
       - name: Copy to Server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v0.1.7   # نسخه جدیدتر
         with:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          port: 22
+          timeout: 60s           # افزایش timeout اتصال
+          command_timeout: 15m   # برای کپی فایل
+          debug: true
           source: "final-build/*"
           target: "/var/www/admin-panel"
           strip_components: 1
+          overwrite: true
 
       - name: Restart Nginx
         uses: appleboy/ssh-action@v1.0.3
@@ -56,5 +59,9 @@ jobs:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          port: 22
+          timeout: 60s
+          command_timeout: 5m
+          debug: true
           script: |
             docker exec moramor-nginx nginx -s reload || echo "Nginx reload failed"
