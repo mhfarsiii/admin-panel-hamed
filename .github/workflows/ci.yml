@@ -44,7 +44,7 @@ jobs:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USERNAME }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
-          port: 22
+          port: 2222
           timeout: 60s           # افزایش timeout اتصال
           command_timeout: 15m   # برای کپی فایل
           debug: true
